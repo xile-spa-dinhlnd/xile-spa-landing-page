@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import { CONTACT_CONFIG } from '@/data/contact';
+import Button from '@/components/common/Button.astro';
+import Container from '@/components/common/Container.astro';
+import logoWebp from '@/assets/xile_spa_logo.webp';
+---
+
+<header class="sticky top-0 z-40 w-full bg-spa-cream/92 backdrop-blur-md border-b border-spa-bronze/15 shadow-spa-soft/30 transition-all duration-300">
+  <Container>
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo thương hiệu độc lập, chuẩn tỷ lệ, không bị tràn lề -->
+      <a href="/" class="flex items-center py-2 group" aria-label="Xile Spa - Trang chủ">
+        <Image 
+          src={logoWebp} 
+          alt="Xile Spa - Beauty & Spa" 
+          width={180}
+          height={56}
+          class="h-12 sm:h-14 max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-spa-charcoal/90">
+        <a href="#loi-the" class="hover:text-spa-bronze transition-colors">
+          Thế Mạnh
+        </a>
+        <a href="#dich-vu" class="hover:text-spa-bronze transition-colors">
+          Dịch Vụ Chủ Lực
+        </a>
+        <a href="#danh-gia" class="hover:text-spa-bronze transition-colors">
+          Khách Hàng Nói Gì
+        </a>
+        <a href="#vi-tri" class="hover:text-spa-bronze transition-colors">
+          Không Gian & Vị Trí
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Hotline Gọi nhanh -->
+        <a 
+          href={CONTACT_CONFIG.HOTLINE_TEL}
+          class="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-spa-wood hover:text-spa-charcoal transition-colors px-3 py-1.5 rounded-full hover:bg-spa-beige/60"
+          aria-label={`Gọi hotline Xile Spa: ${CONTACT_CONFIG.HOTLINE_DISPLAY}`}
+        >
+          <svg class="w-4 h-4 text-spa-bronze" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>{CONTACT_CONFIG.HOTLINE_DISPLAY}</span>
+        </a>
+
+        <!-- Nút Xem Menu (Tab mới) -->
+        <Button 
+          href={CONTACT_CONFIG.MENU_URL}
+          target="_blank"
+          variant="outline"
+          size="sm"
+          class="hidden lg:inline-flex"
+        >
+          Xem Menu
+        </Button>
+
+        <!-- Nút CTA Đặt Lịch -->
+        <Button 
+          href={CONTACT_CONFIG.FACEBOOK_FANPAGE_URL}
+          target="_blank"
+          variant="primary"
+          size="sm"
+        >
+          Đặt Lịch Ngay
+        </Button>
+      </div>
+    </div>
+  </Container>
+</header>

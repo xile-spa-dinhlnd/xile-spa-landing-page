@@ -1,0 +1,132 @@
+---
+import { Image } from 'astro:assets';
+import { CONTACT_CONFIG } from '@/data/contact';
+import Container from '@/components/common/Container.astro';
+import Badge from '@/components/common/Badge.astro';
+import Button from '@/components/common/Button.astro';
+import heroImage from '@/assets/hero-spa.jpg';
+import { Leaf, Activity, Sparkles, Star } from 'lucide-react';
+---
+
+<section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-spa-cream">
+  <!-- Warm ambient glow background effects (Ánh sáng nến & hổ phách ấm cúng) -->
+  <div class="absolute -top-32 -left-32 w-[34rem] h-[34rem] bg-spa-bronze/18 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[42rem] h-[30rem] bg-amber-100/40 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 -right-32 w-[30rem] h-[30rem] bg-spa-sage/14 rounded-full blur-3xl pointer-events-none"></div>
+
+  <Container>
+    <!-- Top Text Content -->
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+      <!-- Trust badge pill -->
+      <div class="inline-block mb-6">
+        <Badge variant="sage" hasDot={true} size="md">
+          Thư Giãn • Trị Liệu Da & Peel • Sports Rehab Giải Cơ
+        </Badge>
+      </div>
+
+      <!-- H1 Chuẩn SEO cho Landing Page -->
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-spa-charcoal font-normal tracking-tight leading-[1.15] mb-6">
+        Chạm Vào Yên Bình, <br class="hidden sm:inline" />
+        <span class="italic text-spa-bronze font-serif">Tái Sinh Năng Lượng</span> Tự Nhiên
+      </h1>
+
+      <!-- Subtitle định vị rõ 3 giá trị cốt lõi -->
+      <p class="text-base sm:text-lg text-spa-wood font-normal leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10">
+        Khám phá không gian chăm sóc toàn diện tại <strong>Xile Spa</strong>: Gội đầu dưỡng sinh xua tan căng thẳng, liệu trình peel da tái sinh đa tầng, và kỹ thuật giải cơ sâu phục hồi thể lực cho người chơi thể thao & dân văn phòng.
+      </p>
+
+      <!-- CTA Buttons Group -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button 
+          href={CONTACT_CONFIG.FACEBOOK_FANPAGE_URL}
+          target="_blank"
+          variant="primary"
+          size="lg"
+          class="w-full sm:w-auto"
+        >
+          <span>Tư Vấn & Đặt Lịch Ngay</span>
+          <svg class="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Button>
+
+        <Button 
+          href={CONTACT_CONFIG.MENU_URL}
+          target="_blank"
+          variant="outline"
+          size="lg"
+          class="w-full sm:w-auto"
+        >
+          <span>Xem Menu Giá Chi Tiết</span>
+          <svg class="w-4 h-4 ml-1 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </Button>
+      </div>
+    </div>
+
+    <!-- Hero Showcase Image Card -->
+    <div class="relative max-w-5xl mx-auto">
+      <div class="relative rounded-3xl overflow-hidden shadow-spa-card border border-spa-bronze/25 bg-spa-alabaster">
+        <Image 
+          src={heroImage}
+          alt="Không gian phòng trị liệu yên tĩnh và thư giãn tại Xile Spa"
+          width={1280}
+          height={720}
+          format="webp"
+          quality={88}
+          loading="eager"
+          fetchpriority="high"
+          class="w-full h-auto max-h-[560px] object-cover object-center transform hover:scale-[1.02] transition-transform duration-700 ease-out"
+        />
+
+        <!-- Subtle gradient overlay at the bottom for readability with warm charcoal tint -->
+        <div class="absolute inset-0 bg-gradient-to-t from-spa-charcoal/50 via-transparent to-transparent pointer-events-none"></div>
+
+        <!-- Floating Trust Pills on top of banner -->
+        <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-center justify-between gap-3 pointer-events-auto">
+          <!-- Rating badge with Lucide Star icons -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/92 backdrop-blur-md border border-spa-bronze/20 text-spa-charcoal text-xs sm:text-sm font-medium shadow-sm">
+            <div class="flex items-center gap-0.5 text-spa-gold">
+              <Star className="w-3.5 h-3.5 fill-spa-gold text-spa-gold" />
+              <Star className="w-3.5 h-3.5 fill-spa-gold text-spa-gold" />
+              <Star className="w-3.5 h-3.5 fill-spa-gold text-spa-gold" />
+              <Star className="w-3.5 h-3.5 fill-spa-gold text-spa-gold" />
+              <Star className="w-3.5 h-3.5 fill-spa-gold text-spa-gold" />
+            </div>
+            <span class="font-semibold text-spa-charcoal">5.0</span>
+            <span class="text-spa-wood border-l border-spa-wood/30 pl-2">1.200+ Lượt trải nghiệm</span>
+          </div>
+
+          <!-- Highlight services badge -->
+          <div class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-spa-charcoal/85 backdrop-blur-md border border-spa-bronze/30 text-spa-cream text-xs sm:text-sm font-medium">
+            <span class="w-2 h-2 rounded-full bg-spa-bronze animate-pulse"></span>
+            <span>Gội Đầu Dưỡng Sinh • Peel Da • Sports Rehab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Quick Highlight Mini-Features with proper Lucide icons -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12 sm:mt-16 text-center">
+      <div class="flex items-center justify-center gap-3 p-4 rounded-2xl bg-[#FCF9F5]/85 border border-spa-bronze/15 shadow-spa-soft/40 backdrop-blur-sm">
+        <span class="w-8 h-8 rounded-xl bg-spa-sage-light flex items-center justify-center text-spa-sage flex-shrink-0">
+          <Leaf className="w-4 h-4" />
+        </span>
+        <span class="text-sm font-medium text-spa-charcoal">Thảo Mộc Nấu Tươi & Hoạt Chất An Toàn</span>
+      </div>
+      <div class="flex items-center justify-center gap-3 p-4 rounded-2xl bg-[#FCF9F5]/85 border border-spa-bronze/15 shadow-spa-soft/40 backdrop-blur-sm">
+        <span class="w-8 h-8 rounded-xl bg-spa-beige flex items-center justify-center text-spa-bronze flex-shrink-0">
+          <Activity className="w-4 h-4" />
+        </span>
+        <span class="text-sm font-medium text-spa-charcoal">Kỹ Thuật Giải Cơ Mạc Sâu Chuyên Nghiệp</span>
+      </div>
+      <div class="flex items-center justify-center gap-3 p-4 rounded-2xl bg-[#FCF9F5]/85 border border-spa-bronze/15 shadow-spa-soft/40 backdrop-blur-sm">
+        <span class="w-8 h-8 rounded-xl bg-amber-50 flex items-center justify-center text-amber-700 flex-shrink-0">
+          <Sparkles className="w-4 h-4" />
+        </span>
+        <span class="text-sm font-medium text-spa-charcoal">Không Gian Tĩnh Lặng & Riêng Tư Tuyệt Đối</span>
+      </div>
+    </div>
+  </Container>
+</section>

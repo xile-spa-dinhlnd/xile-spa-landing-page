@@ -1,0 +1,119 @@
+---
+import Container from '@/components/common/Container.astro';
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { TESTIMONIALS_DATA } from '@/data/testimonials';
+import { Star, CheckCircle2 } from 'lucide-react';
+
+// Generate initials avatar colour based on name
+const avatarColors = [
+  'bg-spa-sage-light text-spa-sage',
+  'bg-amber-100 text-amber-700',
+  'bg-rose-100 text-rose-600',
+  'bg-spa-beige text-spa-wood',
+];
+
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join('');
+}
+---
+
+<section
+  id="feedback"
+  class="bg-spa-alabaster py-16 sm:py-20 lg:py-24"
+  aria-label="Đánh giá từ khách hàng Xile Spa"
+>
+  <Container>
+    <SectionHeading
+      badgeText="Khách Hàng Nói Gì"
+      badgeVariant="gold"
+      title="Cảm Nhận Thật,"
+      titleHighlight="Từ Những Trải Nghiệm Thật"
+      subtitle="Mỗi phản hồi là niềm vui và động lực để Xile Spa tiếp tục hoàn thiện mỗi ngày."
+      align="center"
+    />
+
+    <!-- Aggregate rating strip -->
+    <div class="flex items-center justify-center gap-3 mb-12 sm:mb-16 -mt-6 sm:-mt-8">
+      <div class="flex items-center gap-0.5 text-spa-gold" aria-label="Đánh giá trung bình 5 sao">
+        {Array.from({ length: 5 }).map(() => (
+          <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
+        ))}
+      </div>
+      <p class="text-sm text-spa-charcoal font-medium">
+        <span class="font-semibold text-spa-bronze">5.0</span>
+        <span class="text-spa-wood"> · {TESTIMONIALS_DATA.length} đánh giá đã xác minh</span>
+      </p>
+    </div>
+
+    <!-- Testimonial Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+      {TESTIMONIALS_DATA.map((item, idx) => (
+        <article
+          class="group relative flex flex-col gap-4 bg-[#FCF9F5]/95 rounded-3xl p-6 shadow-spa-soft hover:shadow-spa-card hover:-translate-y-1 transition-all duration-300 border border-spa-bronze/15"
+          aria-label={`Đánh giá từ ${item.clientName}`}
+        >
+          <!-- Quote mark with warm amber bronze tint -->
+          <div class="absolute top-5 right-6 text-6xl leading-none text-spa-bronze/20 font-serif select-none" aria-hidden="true">
+            "
+          </div>
+
+          <!-- Stars with Lucide -->
+          <div class="flex items-center gap-0.5 text-spa-gold" aria-label={`${item.rating} sao`}>
+            {Array.from({ length: item.rating }).map(() => (
+              <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
+            ))}
+          </div>
+
+          <!-- Comment -->
+          <blockquote class="relative z-10 text-sm sm:text-base text-spa-charcoal/85 leading-relaxed flex-1 line-clamp-5">
+            {item.comment}
+          </blockquote>
+
+          <!-- Read more: fade effect placeholder (no JS needed — CSS line clamp) -->
+
+          <!-- Service tag -->
+          <div class="flex-shrink-0">
+            <span class="inline-block text-[11px] font-medium px-3 py-1 rounded-full bg-spa-sage-light text-spa-charcoal/70 border border-spa-sage/20 leading-snug">
+              {item.serviceUsed}
+            </span>
+          </div>
+
+          <!-- Client info -->
+          <div class="flex items-center gap-3 pt-3 border-t border-spa-wood/10">
+            <!-- Avatar initials -->
+            <div
+              class={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold ${avatarColors[idx % avatarColors.length]}`}
+              aria-hidden="true"
+            >
+              {getInitials(item.clientName)}
+            </div>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-spa-charcoal truncate">{item.clientName}</p>
+              <div class="flex items-center gap-1 mt-0.5">
+                {item.verifiedBooking && (
+                  <span class="flex items-center gap-1 text-[11px] text-spa-sage font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Đã đặt lịch
+                  </span>
+                )}
+                <span class="text-[11px] text-spa-muted">{item.date}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom CTA prompt -->
+    <div class="mt-12 sm:mt-16 text-center">
+      <p class="text-spa-wood text-base mb-1">Hàng trăm khách hàng đã tin tưởng Xile Spa.</p>
+      <p class="font-serif text-xl sm:text-2xl text-spa-charcoal italic">
+        Đến trải nghiệm — và viết câu chuyện tiếp theo của bạn.
+      </p>
+    </div>
+  </Container>
+</section>

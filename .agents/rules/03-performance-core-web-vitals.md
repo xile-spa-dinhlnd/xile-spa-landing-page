@@ -21,7 +21,7 @@
   ```astro
   ---
   import { Image } from 'astro:assets';
-  import heroImage from '@/assets/images/hero-spa.jpg';
+  import heroImage from '@/assets/hero-spa.jpg';
   ---
 
   <!-- Ảnh Hero: Tải ưu tiên, không lazy -->

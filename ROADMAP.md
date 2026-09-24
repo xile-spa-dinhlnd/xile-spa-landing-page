@@ -10,21 +10,21 @@
 
 ```text
 [Phase 0: Setup & Rules] ────────► [Phase 1: Data & UI Base] ────────► [Phase 2: Hero & USPs]
-      ██████████ 100%                    ██████████ 100%                    ░░░░░░░░░░  0%
-        (HOÀN THÀNH)                       (HOÀN THÀNH)                     (TIẾP THEO)
+      ██████████ 100%                    ██████████ 100%                    ██████████ 100%
+        (HOÀN THÀNH)                       (HOÀN THÀNH)                       (HOÀN THÀNH)
 
 [Phase 3: Services & Proof] ─────► [Phase 4: Location & Sticky] ────► [Phase 5 & 6: SEO & Deploy]
-      ░░░░░░░░░░  0%                      ░░░░░░░░░░  0%                    ░░░░░░░░░░  0%
-    (CHỜ TRIỂN KHAI)                    (CHỜ TRIỂN KHAI)                   (CHỜ TRIỂN KHAI)
+      ██████████ 100%                     ░░░░░░░░░░  0%                    ░░░░░░░░░░  0%
+        (HOÀN THÀNH)                    (TIẾP THEO)                       (CHỜ TRIỂN KHAI)
 ```
 
 | Phase | Trọng tâm công việc | Trạng thái | Đầu ra dự kiến |
 |:---:|---|:---:|---|
 | **Phase 0** | Khởi tạo dự án, Tech Stack, Rules & Skills | <kbd>ĐÃ XONG</kbd> | Astro 5, React 19, Tailwind, `.agents/`, `AGENTS.md`, Build pass |
 | **Phase 1** | Chuẩn hóa Dataset 3 trụ cột & Core UI Components | <kbd>ĐÃ XONG</kbd> | `services.ts`, `testimonials.ts`, `usps.ts`, `Button`, `Badge` |
-| **Phase 2** | Xây dựng Header/Navbar, Hero Section & 3 USPs | 🟡 **Kế tiếp** | `Navbar.astro`, `HeroSection.astro`, `UspsSection.astro` |
-| **Phase 3** | Showcase 3 Nhóm Dịch Vụ & Social Proof Feedback | ⚪ Chờ | `ServicesSection.astro`, `FeedbackSection.astro` |
-| **Phase 4** | Location, Google Maps, Footer & Floating Widget | ⚪ Chờ | `LocationSection.astro`, `Footer.astro`, `FloatingContact.tsx` |
+| **Phase 2** | Xây dựng Header/Navbar, Hero Section & 3 USPs | <kbd>ĐÃ XONG</kbd> | `Navbar.astro`, `HeroSection.astro`, `UspsSection.astro` |
+| **Phase 3** | Showcase 3 Nhóm Dịch Vụ & Social Proof Feedback | <kbd>ĐÃ XONG</kbd> | `ServicesSection.astro`, `FeedbackSection.astro` |
+| **Phase 4** | Location, Google Maps, Footer & Floating Widget | 🟡 **Kế tiếp** | `LocationSection.astro`, `Footer.astro`, `FloatingContact.tsx` |
 | **Phase 5** | Tối ưu SEO, Core Web Vitals 95–100 & Schema | ⚪ Chờ | Schema JSON-LD `BeautySalon`, Audit LCP < 1.2s, CLS = 0 |
 | **Phase 6** | Kiểm thử Responsive mọi thiết bị & Deploy | ⚪ Chờ | Test iPhone/Android/Desktop, sẵn sàng xuất bản |
 
@@ -57,33 +57,34 @@
 
 ---
 
-### Phase 2: Header, Hero Section & USPs 3 Trụ Cột
-- [ ] **`Navbar.astro`:**
-  - [ ] Logo Xile Spa tối giản thanh lịch.
-  - [ ] Hotline hiển thị nhanh (`CONTACT_CONFIG.HOTLINE_DISPLAY`).
-  - [ ] Nút CTA *"Đặt Lịch"* nhanh trên header.
-  - [ ] Hiệu ứng kính mờ (glassmorphism) mượt mà khi cuộn trang.
-- [ ] **`HeroSection.astro`:**
-  - [ ] Tiêu đề H1 chuẩn SEO nêu bật: *Chăm Sóc Toàn Diện: Thư Giãn, Trị Liệu Da & Phục Hồi Thể Thao*.
-  - [ ] Subtitle dẫn dắt cảm xúc chữa lành & tái sinh năng lượng.
-  - [ ] 2 nút CTA: Nút chính *"Tư Vấn & Nhận Ưu Đãi"* (mở Messenger/Zalo) + Nút phụ *"Xem Menu Dịch Vụ"*.
-  - [ ] Banner thể hiện không gian clinic & spa hiện đại, ấm áp.
-- [ ] **`UspsSection.astro`:**
-  - [ ] 3 thẻ Card nổi bật 3 thế mạnh độc bản (Peel Da Đa Tầng • Sports Rehab Chuyên Sâu • Gội Đầu Thảo Dược).
+### Phase 2: Header, Hero Section & USPs 3 Trụ Cột (Đã hoàn thành ✅)
+- [x] **`Navbar.astro`:**
+  - [x] Tích hợp Logo thật `xile_spa_logo.png` tự động nén WebP (6kB).
+  - [x] Hiển thị hotline bấm gọi nhanh (`CONTACT_CONFIG.HOTLINE_DISPLAY`).
+  - [x] Điều hướng nhanh đến các section và nút CTA *"Đặt Lịch Ngay"*.
+  - [x] Kính mờ cao cấp (`bg-spa-cream/85 backdrop-blur-md border-b border-spa-sage/15`).
+- [x] **`HeroSection.astro`:**
+  - [x] H1 chuẩn SEO: *Chạm Vào Yên Bình, Tái Sinh Năng Lượng Tự Nhiên*.
+  - [x] Subtitle nêu bật 3 thế mạnh: Gội Đầu Thư Giãn, Trị Liệu Làm Da/Peel & Sports Rehab Giải Cơ Sâu.
+  - [x] 2 CTA nút bấm chuyển đổi cao: *"Tư Vấn & Đặt Lịch Ngay"* (màu đồng) và *"Xem Menu Giá Chi Tiết"*.
+  - [x] Khung ảnh không gian trị liệu cao cấp tối ưu qua `astro:assets` (`loading="eager"`, `fetchpriority="high"`, WebP 152kB).
+  - [x] 3 Mini Features cam kết thảo mộc tươi, kỹ thuật giải cơ sâu và không gian yên tĩnh.
+- [x] **`UspsSection.astro`:**
+  - [x] Grid 3 card sang trọng thể hiện 3 thế mạnh độc bản với số thứ tự `01`, `02`, `03` và icon viền tinh tế.
+- [x] Build tĩnh thành công 100% không cảnh báo (`npm run build` trong 913ms).
 
 ---
 
-### Phase 3: Featured Services (3 Nhóm Dịch Vụ) & Social Proof
-- [ ] **`ServicesSection.astro`:**
-  - [ ] Thiết kế Showcase 3 khối dịch vụ lớn riêng biệt, rõ ràng từng chuyên khoa:
-    1. *Khối 1: Gội Đầu Dưỡng Sinh & Thư Giãn* (Ảnh bồn gội, thời lượng, mức giá, lợi ích).
-    2. *Khối 2: Làm Da & Peel Da Tái Sinh* (Ảnh liệu trình peel da, công dụng sáng da/giảm thâm, phục hồi).
-    3. *Khối 3: Sports Rehab & Giải Cơ Sâu* (Ảnh kỹ thuật viên giải cơ, giải tỏa co thắt cơ, phục hồi vận động).
-  - [ ] Nút CTA trực tiếp trên từng card trỏ về tư vấn đặt lịch.
-  - [ ] Link điều hướng sang Menu đầy đủ (`CONTACT_CONFIG.MENU_URL`).
-- [ ] **`FeedbackSection.astro`:**
-  - [ ] Grid đánh giá 5 sao từ khách hàng đa dạng (chăm da, gội đầu, giải cơ thể thao).
-  - [ ] Trích dẫn cảm xúc, avatar chân dung và chứng nhận *"Đã trải nghiệm dịch vụ"*.
+### Phase 3: Featured Services (3 Nhóm Dịch Vụ) & Social Proof (Hoàn thành ✅)
+- [x] **`ServicesSection.astro`:**
+  - [x] Layout xen kẽ image-left / image-right cho 3 nhóm dịch vụ.
+  - [x] Ảnh AI-generated chất lượng cao, tự động nén WebP (~22–42kB) qua `astro:assets`.
+  - [x] Service cards hiển thị badge, tagline, 3 benefits chính, giá + gạch bỏ + thời lượng.
+  - [x] CTA Zalo + Xem Bảng Giá trực tiếp trên từng nhóm.
+- [x] **`FeedbackSection.astro`:**
+  - [x] Grid 4 cột đánh giá 5 sao với service tag, avatar initials, verified booking badge.
+  - [x] Aggregate rating strip (5.0 · N đánh giá đã xác minh).
+  - [x] Build pass: 0 lỗi, 0 cảnh báo TypeScript.
 
 ---
 
@@ -117,5 +118,5 @@
 ## 3. NƠI QUẢN LÝ TÀI NGUYÊN VÀ THÔNG TIN
 
 - **Thay đổi thông tin liên hệ / Fanpage / Zalo:** Sửa trực tiếp tại [src/data/contact.ts](file:///Users/dinhlu2482/Desktop/XileSpa/xile-spa-landing-page/src/data/contact.ts).
-- **Thêm/thay thế hình ảnh:** Đặt ảnh vào thư mục `src/assets/images/` (chia theo `hero/`, `services/`, `space/`, `testimonials/`).
+- **Thêm/thay thế hình ảnh:** Đặt ảnh vào thư mục `src/assets/` (chia theo `head-spa-pics/`, `skincare-pics/`, `sport-rehab-pics/`, và ảnh banner/logo tại gốc `src/assets/`).
 - **Tùy chỉnh màu sắc & Typography:** Chỉnh sửa tại [tailwind.config.mjs](file:///Users/dinhlu2482/Desktop/XileSpa/xile-spa-landing-page/tailwind.config.mjs).

@@ -5,17 +5,17 @@ export default {
     extend: {
       colors: {
         spa: {
-          cream: '#FDFBF7',     // Nền chính 60% (Kem ấm)
-          alabaster: '#FAF9F6', // Nền biến thể (Trắng ngà)
-          sage: '#8A9A86',      // Màu phụ trợ 30% (Xanh xô thơm thảo mộc)
-          'sage-light': '#E8EFE6', // Nền badge / pill nhạt
-          beige: '#F4EFE6',     // Khối phân cách section
-          wood: '#7C6E65',      // Màu nâu gỗ / subtitle
-          bronze: '#C5A880',    // Màu điểm nhấn 10% (Nâu đồng kim loại)
-          terracotta: '#D97757',// Màu điểm nhấn phụ (Cam đất)
-          gold: '#D4AF37',      // Sao rating & badge VIP
-          charcoal: '#2D3748',  // Text chính (Xám than ấm)
-          muted: '#718096',     // Text phụ
+          cream: '#FAF5EE',     // Nền chính 60% (Kem ấm lụa tự nhiên / Warm Silk Cream)
+          alabaster: '#F4ECE1', // Nền biến thể (Trắng cát ngà ấm / Warm Sand Ivory)
+          sage: '#758771',      // Màu phụ trợ 30% (Xanh xô thơm thảo mộc ấm)
+          'sage-light': '#E7ECE4', // Nền badge / pill xanh dịu
+          beige: '#EDE4D5',     // Khối phân cách section (Beige hạt dẻ ấm)
+          wood: '#6E5D53',      // Màu nâu gỗ tếch ấm / subtitle
+          bronze: '#BD8B53',    // Màu điểm nhấn 10% (Nâu đồng hổ phách ấm như ánh nến)
+          terracotta: '#C86A4B',// Màu điểm nhấn phụ (Cam đất nung ấm)
+          gold: '#CFA13D',      // Sao rating & badge VIP (Vàng mật ong ấm)
+          charcoal: '#2C241F',  // Text chính (Nâu than trầm ấm / Warm Deep Espresso)
+          muted: '#8A7B72',     // Text phụ (Nâu sương mờ ấm)
         },
       },
       fontFamily: {
@@ -28,9 +28,9 @@ export default {
         '4xl': '2rem',
       },
       boxShadow: {
-        'spa-soft': '0 10px 30px -10px rgba(124, 110, 101, 0.08)',
-        'spa-card': '0 20px 40px -15px rgba(45, 55, 72, 0.05)',
-        'spa-glow': '0 0 25px rgba(197, 168, 128, 0.25)',
+        'spa-soft': '0 10px 30px -10px rgba(110, 93, 83, 0.08)',
+        'spa-card': '0 20px 40px -15px rgba(44, 36, 31, 0.08)',
+        'spa-glow': '0 0 30px rgba(189, 139, 83, 0.28)',
       },
     },
   },

@@ -1,0 +1,65 @@
+---
+import Container from '@/components/common/Container.astro';
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import Badge from '@/components/common/Badge.astro';
+import { USPS_DATA } from '@/data/usps';
+import { Sparkles, Activity, Flower2, ShieldCheck } from 'lucide-react';
+---
+
+<section id="loi-the" class="py-20 md:py-28 bg-spa-beige/40 relative">
+  <Container>
+    <!-- Section Heading -->
+    <SectionHeading 
+      badgeText="Lợi Thế Khác Biệt"
+      badgeVariant="bronze"
+      title="3 Trụ Cột Trị Liệu & Chăm Sóc"
+      titleHighlight="Độc Bản Tại Xile Spa"
+      subtitle="Chúng tôi không chỉ giúp bạn thả lỏng tinh thần, mà còn mang đến giải pháp thực chứng để tái tạo làn da và giải phóng áp lực cơ bắp vận động."
+    />
+
+    <!-- 3 Core USP Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {USPS_DATA.map((usp, index) => (
+        <div class="group relative flex flex-col justify-between p-8 rounded-3xl bg-[#FCF9F5]/92 backdrop-blur-sm border border-spa-bronze/18 shadow-spa-soft hover:shadow-spa-card hover:-translate-y-1.5 transition-all duration-300">
+          <div>
+            <!-- Header of card with icon and number -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-spa-cream flex items-center justify-center border border-spa-bronze/20 group-hover:scale-110 group-hover:bg-spa-beige transition-all duration-300">
+                {usp.iconName === 'sparkles' && <Sparkles className="w-6 h-6 text-spa-bronze" />}
+                {usp.iconName === 'activity' && <Activity className="w-6 h-6 text-spa-bronze" />}
+                {usp.iconName === 'flower2' && <Flower2 className="w-6 h-6 text-spa-bronze" />}
+                {usp.iconName === 'shield-check' && <ShieldCheck className="w-6 h-6 text-spa-bronze" />}
+              </div>
+              <span class="font-serif text-3xl font-light text-spa-wood/30 group-hover:text-spa-bronze/60 transition-colors">
+                0{index + 1}
+              </span>
+            </div>
+
+            <!-- Badge Category -->
+            <div class="mb-3">
+              <Badge variant={index === 0 ? 'terracotta' : index === 1 ? 'bronze' : 'sage'} size="sm">
+                {usp.badgeTitle}
+              </Badge>
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-serif text-xl sm:text-2xl text-spa-charcoal font-normal leading-snug mb-4 group-hover:text-spa-bronze transition-colors">
+              {usp.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-sm sm:text-base text-spa-wood leading-relaxed font-light">
+              {usp.description}
+            </p>
+          </div>
+
+          <!-- Bottom subtle indicator line -->
+          <div class="mt-8 pt-4 border-t border-spa-sage/10 flex items-center justify-between text-xs text-spa-wood/70">
+            <span>Tiêu chuẩn cá nhân hóa</span>
+            <span class="text-spa-bronze group-hover:translate-x-1 transition-transform">Khám phá →</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

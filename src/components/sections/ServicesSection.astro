@@ -1,0 +1,228 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/common/Container.astro';
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import Button from '@/components/common/Button.astro';
+import { SERVICES_DATA } from '@/data/services';
+import { CONTACT_CONFIG } from '@/data/contact';
+import { Leaf, Sparkles, Activity, CheckCircle2, Clock } from 'lucide-react';
+
+// Images imported from assets for Astro optimization
+import headSpaImg from '@/assets/head-spa-pics/service-head-spa.jpg';
+import skincarePeelImg from '@/assets/skincare-pics/service-skincare-peel.jpg';
+import sportsRehabImg from '@/assets/sport-rehab-pics/service-sports-rehab.jpg';
+
+// Group services by category, take featured ones first
+const headSpaServices = SERVICES_DATA
+  .filter((s) => s.category === 'head-spa')
+  .sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
+
+const skincareServices = SERVICES_DATA
+  .filter((s) => s.category === 'skincare-peel')
+  .sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
+
+const rehabServices = SERVICES_DATA
+  .filter((s) => s.category === 'sports-rehab')
+  .sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
+
+const serviceGroups = [
+  {
+    id: 'head-spa',
+    number: '01',
+    categoryLabel: 'Gội Đầu Thư Giãn',
+    title: 'Gội Đầu & Dưỡng Sinh',
+    titleHighlight: 'Thảo Mộc Tươi',
+    subtitle:
+      'Buông bỏ mệt mỏi, thư giãn trọn vẹn với liệu pháp gội đầu thảo dược đun nấu truyền thống kết hợp bấm huyệt đả thông kinh lạc.',
+    image: headSpaImg,
+    imageAlt: 'Gội đầu thư giãn thảo mộc tươi tại Xile Spa',
+    accentColor: 'spa-sage',
+    badgeVariant: 'sage' as const,
+    services: headSpaServices,
+    ctaZalo: CONTACT_CONFIG.ZALO_URL,
+    ctaMenu: CONTACT_CONFIG.MENU_URL,
+    imageLeft: true,
+    bgClass: 'bg-spa-cream',
+  },
+  {
+    id: 'skincare-peel',
+    number: '02',
+    categoryLabel: 'Chăm Da & Peel Da',
+    title: 'Chăm Sóc Da &',
+    titleHighlight: 'Peel Da Tái Sinh',
+    subtitle:
+      'Liệu trình làm da chuyên sâu, peel tái tạo bề mặt an toàn — gom cồi mụn, mờ thâm, sáng da rạng rỡ từ bên trong.',
+    image: skincarePeelImg,
+    imageAlt: 'Liệu trình chăm sóc da và peel da tái sinh tại Xile Spa',
+    accentColor: 'spa-terracotta',
+    badgeVariant: 'terracotta' as const,
+    services: skincareServices,
+    ctaZalo: CONTACT_CONFIG.ZALO_URL,
+    ctaMenu: CONTACT_CONFIG.MENU_URL,
+    imageLeft: false,
+    bgClass: 'bg-spa-beige',
+  },
+  {
+    id: 'sports-rehab',
+    number: '03',
+    categoryLabel: 'Sports Rehab',
+    title: 'Giải Cơ Sâu &',
+    titleHighlight: 'Sports Rehab',
+    subtitle:
+      'Giải phóng trigger points co cứng, phục hồi vận động sau thể thao và trị liệu đau mỏi cổ vai gáy cho dân văn phòng.',
+    image: sportsRehabImg,
+    imageAlt: 'Sports Rehab giải cơ sâu phục hồi vận động tại Xile Spa',
+    accentColor: 'spa-bronze',
+    badgeVariant: 'bronze' as const,
+    services: rehabServices,
+    ctaZalo: CONTACT_CONFIG.ZALO_URL,
+    ctaMenu: CONTACT_CONFIG.MENU_URL,
+    imageLeft: true,
+    bgClass: 'bg-spa-cream',
+  },
+];
+---
+
+<section id="services" class="py-16 sm:py-20 lg:py-24" aria-label="Dịch vụ Xile Spa">
+  <Container>
+    <SectionHeading
+      badgeText="Dịch Vụ Chuyên Sâu"
+      badgeVariant="sage"
+      title="3 Trụ Cột"
+      titleHighlight="Trị Liệu Xile Spa"
+      subtitle="Mỗi liệu trình được thiết kế riêng biệt, phục vụ một nhu cầu chăm sóc chuyên sâu — từ thư giãn tinh thần đến làm đẹp và phục hồi thể lực."
+      align="center"
+    />
+  </Container>
+
+  <!-- Service Groups -->
+  {serviceGroups.map((group, groupIdx) => (
+    <div id={`service-${group.id}`} class={`${group.bgClass} py-12 sm:py-16 lg:py-20`}>
+      <Container>
+        <div class={`flex flex-col gap-10 lg:gap-16 ${group.imageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}>
+
+          <!-- Image Block -->
+          <div class="w-full lg:w-[45%] flex-shrink-0">
+            <div class="relative rounded-3xl overflow-hidden shadow-spa-card border border-spa-bronze/20 group">
+              <!-- Number label -->
+              <div class="absolute top-4 left-4 z-10 w-12 h-12 rounded-full bg-spa-cream/90 backdrop-blur-sm flex items-center justify-center shadow-md">
+                <span class="font-serif text-lg font-semibold text-spa-charcoal">{group.number}</span>
+              </div>
+              <!-- Category pill with Lucide icon -->
+              <div class="absolute top-4 right-4 z-10">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-spa-cream/92 backdrop-blur-sm text-spa-charcoal shadow-sm border border-spa-bronze/20">
+                  {group.id === 'head-spa' && <Leaf className="w-3.5 h-3.5 text-spa-sage" />}
+                  {group.id === 'skincare-peel' && <Sparkles className="w-3.5 h-3.5 text-spa-terracotta" />}
+                  {group.id === 'sports-rehab' && <Activity className="w-3.5 h-3.5 text-spa-bronze" />}
+                  <span>{group.categoryLabel}</span>
+                </span>
+              </div>
+              <!-- Image -->
+              <Image
+                src={group.image}
+                alt={group.imageAlt}
+                width={700}
+                height={467}
+                class="w-full h-72 sm:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                loading={groupIdx === 0 ? 'eager' : 'lazy'}
+              />
+              <!-- Subtle overlay gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-spa-charcoal/10 via-transparent to-transparent pointer-events-none"></div>
+            </div>
+          </div>
+
+          <!-- Content Block -->
+          <div class="w-full lg:w-[55%] flex flex-col">
+            <!-- Heading -->
+            <div class="mb-6 sm:mb-8">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-spa-wood mb-3">
+                {group.categoryLabel}
+              </p>
+              <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-spa-charcoal font-normal tracking-tight leading-tight mb-4">
+                {group.title}
+                <span class="italic text-spa-bronze block sm:inline sm:ml-2">{group.titleHighlight}</span>
+              </h2>
+              <p class="text-base sm:text-lg text-spa-wood leading-relaxed max-w-xl">
+                {group.subtitle}
+              </p>
+            </div>
+
+            <!-- Service Cards — 2 column on wider screens -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              {group.services.map((service) => (
+                <div
+                  class="bg-[#FCF9F5]/92 backdrop-blur-sm rounded-2xl p-5 border border-spa-bronze/15 shadow-spa-soft hover:shadow-spa-card hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-3"
+                >
+                  <!-- Service header -->
+                  <div class="flex items-start justify-between gap-2">
+                    <h3 class="font-serif text-base sm:text-lg text-spa-charcoal font-medium leading-snug flex-1">
+                      {service.title}
+                    </h3>
+                    {service.badge && (
+                      <span class="flex-shrink-0 inline-block text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-spa-bronze/10 text-spa-bronze border border-spa-bronze/20">
+                        {service.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  <!-- Tagline -->
+                  <p class="text-sm text-spa-wood leading-snug">{service.tagline}</p>
+
+                  <!-- Benefits list -->
+                  <ul class="flex flex-col gap-1.5 mt-1">
+                    {service.benefits.slice(0, 3).map((benefit) => (
+                      <li class="flex items-start gap-2 text-sm text-spa-charcoal/85">
+                        <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5 text-spa-sage" />
+                        <span>{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <!-- Price & Duration row -->
+                  <div class="flex items-center justify-between pt-2 mt-auto border-t border-spa-wood/10">
+                    <div class="flex items-baseline gap-1.5">
+                      <span class="text-base sm:text-lg font-semibold text-spa-bronze">{service.formattedPrice}</span>
+                      {service.formattedOriginalPrice && (
+                        <span class="text-xs text-spa-muted line-through">{service.formattedOriginalPrice}</span>
+                      )}
+                    </div>
+                    <span class="text-xs text-spa-muted flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-spa-muted" />
+                      {service.formattedDuration}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- CTA row -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <Button
+                href={group.ctaZalo}
+                target="_blank"
+                variant="primary"
+                size="md"
+                ariaLabel={`Đặt lịch dịch vụ ${group.categoryLabel} qua Zalo`}
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.245 2 11.5c0 2.914 1.374 5.52 3.535 7.265L4.5 22l3.52-1.11A10.476 10.476 0 0012 21c5.523 0 10-4.245 10-9.5S17.523 2 12 2z"/>
+                </svg>
+                Tư Vấn & Đặt Lịch Zalo
+              </Button>
+              <Button
+                href={group.ctaMenu}
+                target="_blank"
+                variant="outline"
+                size="md"
+                ariaLabel={`Xem menu giá dịch vụ ${group.categoryLabel}`}
+              >
+                Xem Bảng Giá Đầy Đủ →
+              </Button>
+            </div>
+          </div>
+
+        </div>
+      </Container>
+    </div>
+  ))}
+</section>

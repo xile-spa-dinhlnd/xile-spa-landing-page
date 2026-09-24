@@ -32,12 +32,12 @@ Astro tạo ra HTML tĩnh thuần túy theo mặc định. Điều này mang l�
 ```text
 src/
 ├── assets/                  # Tài nguyên tĩnh tối ưu qua astro:assets
-│   ├── images/
-│   │   ├── hero/            # Banner không gian thư giãn
-│   │   ├── services/        # Hình ảnh từng gói liệu trình spa
-│   │   ├── space/           # Không gian nội thất spa, thảo mộc
-│   │   └── testimonials/    # Ảnh chân dung/feedback khách hàng
-│   └── icons/               # SVG icons nội bộ tối ưu
+│   ├── head-spa-pics/       # Hình ảnh liệu trình gội đầu thư giãn & dưỡng sinh
+│   ├── skincare-pics/       # Hình ảnh liệu trình chăm sóc da & peel da tái sinh
+│   ├── sport-rehab-pics/    # Hình ảnh kỹ thuật giải cơ sâu & sports rehab
+│   ├── hero-spa.jpg         # Banner không gian trị liệu Hero
+│   ├── xile_spa_logo.png    # File logo gốc
+│   └── xile_spa_logo.webp   # File logo WebP nén tối ưu
 ├── components/              # Phân tầng UI component mạch lạc
 │   ├── common/              # Component dùng chung (Button.astro, Badge.astro, SectionHeading.astro, Container.astro)
 │   ├── layout/              # Khung giao diện cố định (Navbar.astro, Footer.astro, MobileMenu.astro)
