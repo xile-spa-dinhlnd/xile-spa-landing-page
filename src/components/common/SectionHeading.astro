@@ -1,0 +1,53 @@
+---
+import Badge from './Badge.astro';
+
+export interface Props {
+  badgeText?: string;
+  badgeVariant?: 'sage' | 'bronze' | 'terracotta' | 'gold';
+  title: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  align?: 'center' | 'left';
+  class?: string;
+}
+
+const {
+  badgeText,
+  badgeVariant = 'sage',
+  title,
+  titleHighlight,
+  subtitle,
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+
+const alignmentClasses = {
+  center: 'text-center mx-auto items-center',
+  left: 'text-left items-start',
+};
+---
+
+<div class={`flex flex-col max-w-3xl mb-12 sm:mb-16 ${alignmentClasses[align]} ${className}`}>
+  {badgeText && (
+    <div class="mb-4">
+      <Badge variant={badgeVariant} hasDot={true}>
+        {badgeText}
+      </Badge>
+    </div>
+  )}
+
+  <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-spa-charcoal font-normal tracking-tight leading-tight">
+    {title}
+    {titleHighlight && (
+      <span class="italic text-spa-bronze font-serif block sm:inline sm:ml-2">
+        {titleHighlight}
+      </span>
+    )}
+  </h2>
+
+  {subtitle && (
+    <p class="mt-4 text-base sm:text-lg text-spa-wood font-normal leading-relaxed max-w-2xl">
+      {subtitle}
+    </p>
+  )}
+</div>

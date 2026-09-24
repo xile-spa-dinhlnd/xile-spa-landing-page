@@ -1,0 +1,44 @@
+---
+export interface Props {
+  variant?: 'sage' | 'bronze' | 'terracotta' | 'gold';
+  size?: 'sm' | 'md';
+  hasDot?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'sage',
+  size = 'md',
+  hasDot = false,
+  class: className = '',
+} = Astro.props;
+
+const variantStyles = {
+  sage: 'bg-spa-sage-light text-spa-sage border-spa-sage/20',
+  bronze: 'bg-spa-beige text-spa-bronze border-spa-bronze/30',
+  terracotta: 'bg-orange-50 text-spa-terracotta border-spa-terracotta/25',
+  gold: 'bg-amber-50 text-amber-700 border-amber-300',
+};
+
+const dotColors = {
+  sage: 'bg-spa-sage',
+  bronze: 'bg-spa-bronze',
+  terracotta: 'bg-spa-terracotta',
+  gold: 'bg-amber-500',
+};
+
+const sizeStyles = {
+  sm: 'text-[11px] px-2.5 py-0.5 tracking-wider',
+  md: 'text-xs px-3.5 py-1 tracking-widest',
+};
+---
+
+<span class={`inline-flex items-center gap-2 rounded-full border font-medium uppercase transition-colors ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}>
+  {hasDot && (
+    <span class="relative flex h-2 w-2">
+      <span class={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${dotColors[variant]}`}></span>
+      <span class={`relative inline-flex rounded-full h-2 w-2 ${dotColors[variant]}`}></span>
+    </span>
+  )}
+  <slot />
+</span>

@@ -10,8 +10,8 @@
 
 ```text
 [Phase 0: Setup & Rules] ────────► [Phase 1: Data & UI Base] ────────► [Phase 2: Hero & USPs]
-      ██████████ 100%                     ░░░░░░░░░░  0%                    ░░░░░░░░░░  0%
-        (HOÀN THÀNH)                      (TIẾP THEO)                      (CHỜ TRIỂN KHAI)
+      ██████████ 100%                    ██████████ 100%                    ░░░░░░░░░░  0%
+        (HOÀN THÀNH)                       (HOÀN THÀNH)                     (TIẾP THEO)
 
 [Phase 3: Services & Proof] ─────► [Phase 4: Location & Sticky] ────► [Phase 5 & 6: SEO & Deploy]
       ░░░░░░░░░░  0%                      ░░░░░░░░░░  0%                    ░░░░░░░░░░  0%
@@ -21,8 +21,8 @@
 | Phase | Trọng tâm công việc | Trạng thái | Đầu ra dự kiến |
 |:---:|---|:---:|---|
 | **Phase 0** | Khởi tạo dự án, Tech Stack, Rules & Skills | <kbd>ĐÃ XONG</kbd> | Astro 5, React 19, Tailwind, `.agents/`, `AGENTS.md`, Build pass |
-| **Phase 1** | Chuẩn hóa Dataset 3 trụ cột & Core UI Components | 🟡 **Kế tiếp** | `services.ts`, `testimonials.ts`, `usps.ts`, `Button`, `Badge` |
-| **Phase 2** | Xây dựng Header/Navbar, Hero Section & 3 USPs | ⚪ Chờ | `Navbar.astro`, `HeroSection.astro`, `UspsSection.astro` |
+| **Phase 1** | Chuẩn hóa Dataset 3 trụ cột & Core UI Components | <kbd>ĐÃ XONG</kbd> | `services.ts`, `testimonials.ts`, `usps.ts`, `Button`, `Badge` |
+| **Phase 2** | Xây dựng Header/Navbar, Hero Section & 3 USPs | 🟡 **Kế tiếp** | `Navbar.astro`, `HeroSection.astro`, `UspsSection.astro` |
 | **Phase 3** | Showcase 3 Nhóm Dịch Vụ & Social Proof Feedback | ⚪ Chờ | `ServicesSection.astro`, `FeedbackSection.astro` |
 | **Phase 4** | Location, Google Maps, Footer & Floating Widget | ⚪ Chờ | `LocationSection.astro`, `Footer.astro`, `FloatingContact.tsx` |
 | **Phase 5** | Tối ưu SEO, Core Web Vitals 95–100 & Schema | ⚪ Chờ | Schema JSON-LD `BeautySalon`, Audit LCP < 1.2s, CLS = 0 |
@@ -43,19 +43,17 @@
 
 ---
 
-### Phase 1: Chuẩn Hóa Dataset & Core UI Components (Mục tiêu tiếp theo 🎯)
-- [ ] **Dataset tĩnh (`src/data/`):**
-  - [ ] `services.ts`: Dữ liệu 3 nhóm dịch vụ chủ lực:
-    - *Nhóm 1:* Gội đầu dưỡng sinh & thư giãn thảo mộc (thời lượng, giá, benefits).
-    - *Nhóm 2:* Làm da & Peel da tái sinh chuyên sâu (thải độc, trị thâm mụn, căng bóng).
-    - *Nhóm 3:* Sports Rehab & Giải cơ / Giãn cơ sâu (cổ vai gáy, thắt lưng, myofascial release).
-  - [ ] `testimonials.ts`: Đánh giá thực tế từ cả khách nữ làm da/gội đầu và khách chơi thể thao/văn phòng giải cơ.
-  - [ ] `usps.ts`: 3 điểm khác biệt cốt lõi (Công nghệ peel an toàn • Chuyên viên giải cơ thể thao • Không gian thư thái).
-- [ ] **Core UI Components (`src/components/common/`):**
-  - [ ] `Button.astro`: Hỗ trợ biến thể `primary` (nâu đồng `#C5A880`), `outline`, `ghost`, kích thước `sm`/`md`/`lg`.
-  - [ ] `Badge.astro`: Hiển thị tag dịch vụ (*Best Seller*, *Hot Liệu Trình*, *Rehab Chuyên Sâu*).
-  - [ ] `SectionHeading.astro`: Tiêu đề Serif sang trọng kèm subtitle và badge định hướng.
-  - [ ] `Container.astro`: Bọc lề chuẩn responsive (`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8`).
+### Phase 1: Chuẩn Hóa Dataset & Core UI Components (Đã hoàn thành ✅)
+- [x] **Dataset tĩnh (`src/data/`):**
+  - [x] `services.ts`: Dữ liệu 3 nhóm dịch vụ chủ lực (Gội đầu dưỡng sinh & thư giãn; Làm da & Peel da sinh học tái sinh; Sports Rehab & Giải cơ cổ vai gáy / vận động viên).
+  - [x] `testimonials.ts`: Đánh giá thực tế từ khách làm da, khách gội đầu và khách chơi thể thao/văn phòng giải cơ.
+  - [x] `usps.ts`: 3 điểm khác biệt cốt lõi (Peel da đa tầng chuẩn y khoa • Sports Rehab giải cơ tầng sâu • Gội đầu thảo mộc tươi).
+- [x] **Core UI Components (`src/components/common/`):**
+  - [x] `Button.astro`: Đa hình (polymorphic `<a>` hoặc `<button>`), hỗ trợ biến thể `primary` (nâu đồng `#C5A880`), `secondary`, `outline`, `ghost`, kích thước `sm`/`md`/`lg`.
+  - [x] `Badge.astro`: Luxury pill badge (`spa-sage`, `spa-bronze`, `spa-terracotta`, `spa-gold`) có chấm pulse tinh tế.
+  - [x] `SectionHeading.astro`: Tiêu đề Serif sang trọng chuẩn SEO H2 kèm subtitle và badge dẫn dắt.
+  - [x] `Container.astro`: Bọc lề chuẩn responsive (`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8`).
+- [x] Build TypeScript xác thực 0 lỗi (`npm run build` trong 662ms).
 
 ---
 
