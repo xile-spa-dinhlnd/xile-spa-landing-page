@@ -5,11 +5,14 @@ import HeroSection from '@/components/sections/HeroSection.astro';
 import UspsSection from '@/components/sections/UspsSection.astro';
 import ServicesSection from '@/components/sections/ServicesSection.astro';
 import FeedbackSection from '@/components/sections/FeedbackSection.astro';
+import LocationSection from '@/components/sections/LocationSection.astro';
+import Footer from '@/components/layout/Footer.astro';
+import FloatingContact from '@/components/common/FloatingContact.astro';
 ---
 
 <BaseLayout 
   title="Xile Spa — Không Gian Dưỡng Sinh, Chăm Sóc Da & Sports Rehab Chuyên Sâu"
-  description="Trải nghiệm gội đầu thư giãn thảo mộc, liệu trình peel da tái sinh đa tầng và phục hồi cơ bắp sports rehab tại Xile Spa. Nơi chăm sóc toàn diện cho nhan sắc & thể lực."
+  description="Trải nghiệm gội đầu thư giãn thảo mộc, liệu trình peel da tái sinh đa tầng và phục hồi cơ bắp sports rehab tại Xile Spa 67 Hưng Phú, Quận 8. Đặt lịch: 0909 722 408."
 >
   <!-- Sticky Header / Navbar -->
   <Navbar />
@@ -21,10 +24,19 @@ import FeedbackSection from '@/components/sections/FeedbackSection.astro';
     <!-- Section 2: Core USPs 3 Trụ Cột -->
     <UspsSection />
 
-    <!-- Section 3: 3 Nhóm Dịch Vụ Chính -->
+    <!-- Section 3: 3 Nhóm Dịch Vụ Chính (Sử dụng ảnh thực tế) -->
     <ServicesSection />
 
     <!-- Section 4: Social Proof - Đánh Giá Khách Hàng -->
     <FeedbackSection />
+
+    <!-- Section 5: Không Gian & Vị Trí Google Maps (#vi-tri) -->
+    <LocationSection />
   </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Sticky Quick Contact Widget -->
+  <FloatingContact />
 </BaseLayout>

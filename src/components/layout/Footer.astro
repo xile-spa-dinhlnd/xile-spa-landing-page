@@ -1,0 +1,174 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/common/Container.astro';
+import { CONTACT_CONFIG } from '@/data/contact';
+import logoMaster from '@/assets/xile_logo_master.webp';
+import { MapPin, Phone, Clock, MessageSquare, ArrowUpRight } from 'lucide-react';
+---
+
+<footer class="bg-[#241D18] text-spa-cream/80 pt-16 sm:pt-20 pb-12 border-t border-spa-bronze/20" aria-label="Chân trang Xile Spa">
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
+      <!-- Col 1: Brand Info (4 cols) -->
+      <div class="lg:col-span-4 flex flex-col">
+        <!-- Logo -->
+        <a href="/" class="inline-block mb-5 group" aria-label="Xile Spa - Trang chủ">
+          <Image
+            src={logoMaster}
+            alt="Xile Beauty & Spa"
+            width={200}
+            densities={[1.5, 2]}
+            class="h-14 sm:h-15 w-auto object-contain brightness-0 invert opacity-95 transition-opacity group-hover:opacity-100"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- Description -->
+        <p class="text-sm text-spa-cream/70 leading-relaxed mb-6 max-w-sm">
+          Xile Spa kết hợp hài hòa giữa thư giãn tinh thần, chăm sóc tái tạo làn da và giải phóng điểm đau mỏi cơ bắp sau thể thao. Không gian chuẩn dưỡng sinh cho bạn tái tạo năng lượng mỗi ngày.
+        </p>
+
+        <!-- Social Channels -->
+        <div class="flex items-center gap-3">
+          <!-- Facebook -->
+          <a
+            href={CONTACT_CONFIG.FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/10 hover:bg-spa-bronze flex items-center justify-center text-spa-cream transition-colors"
+            aria-label="Fanpage Facebook Xile Spa"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+
+          <!-- Zalo -->
+          <a
+            href={CONTACT_CONFIG.ZALO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/10 hover:bg-spa-bronze flex items-center justify-center text-spa-cream transition-colors text-xs font-bold tracking-tight"
+            aria-label="Nhắn tin Zalo Xile Spa"
+          >
+            <span>ZALO</span>
+          </a>
+
+          <!-- Google Maps -->
+          <a
+            href={CONTACT_CONFIG.GOOGLE_MAPS_DIRECTIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/10 hover:bg-spa-bronze flex items-center justify-center text-spa-cream transition-colors"
+            aria-label="Vị trí Xile Spa trên Google Maps"
+          >
+            <MapPin className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Services Quick Links (3 cols) -->
+      <div class="lg:col-span-3">
+        <h4 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
+          Dịch Vụ Chủ Lực
+        </h4>
+        <ul class="flex flex-col gap-2.5 text-sm text-spa-cream/70">
+          <li>
+            <a href="#services" class="hover:text-spa-bronze transition-colors flex items-center gap-1.5 group">
+              <span>Gội Đầu Dưỡng Sinh Thảo Mộc</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="hover:text-spa-bronze transition-colors flex items-center gap-1.5 group">
+              <span>Peel Da Tái Sinh Đa Tầng</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="hover:text-spa-bronze transition-colors flex items-center gap-1.5 group">
+              <span>Chăm Sóc & Phục Hồi Da Chuyên Sâu</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="hover:text-spa-bronze transition-colors flex items-center gap-1.5 group">
+              <span>Sports Rehab & Giải Cơ Sâu</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="hover:text-spa-bronze transition-colors flex items-center gap-1.5 group">
+              <span>Trị Liệu Cổ Vai Gáy Văn Phòng</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Contact & Address (3 cols) -->
+      <div class="lg:col-span-3">
+        <h4 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
+          Thông Tin Địa Điểm
+        </h4>
+        <ul class="flex flex-col gap-3.5 text-sm text-spa-cream/70">
+          <li class="flex items-start gap-3">
+            <MapPin className="w-4 h-4 text-spa-bronze flex-shrink-0 mt-0.5" />
+            <span>{CONTACT_CONFIG.SPA_FULL_ADDRESS}</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Phone className="w-4 h-4 text-spa-bronze flex-shrink-0" />
+            <a href={CONTACT_CONFIG.HOTLINE_TEL} class="hover:text-spa-bronze transition-colors font-medium text-spa-cream">
+              {CONTACT_CONFIG.HOTLINE_DISPLAY}
+            </a>
+          </li>
+          <li class="flex items-start gap-3">
+            <Clock className="w-4 h-4 text-spa-bronze flex-shrink-0 mt-0.5" />
+            <span>{CONTACT_CONFIG.OPENING_HOURS}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Quick Action (2 cols) -->
+      <div class="lg:col-span-2 flex flex-col justify-between">
+        <div>
+          <h4 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
+            Đặt Lịch Ngay
+          </h4>
+          <p class="text-xs text-spa-cream/65 leading-relaxed mb-4">
+            Đội ngũ tư vấn sẵn sàng hỗ trợ bạn chọn liệu trình phù hợp nhất.
+          </p>
+        </div>
+        <div class="flex flex-col gap-2.5">
+          <a
+            href={CONTACT_CONFIG.FACEBOOK_FANPAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-spa-bronze hover:bg-spa-bronze/90 text-spa-cream text-xs font-medium transition-all shadow-sm text-center"
+          >
+            <span>Nhắn Tin Fanpage</span>
+          </a>
+          <a
+            href={CONTACT_CONFIG.MENU_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-spa-cream text-xs font-medium border border-white/15 transition-all text-center"
+          >
+            <span>Xem Bảng Giá Menu</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-spa-cream/50">
+      <p>© 2026 Xile Beauty & Spa. Toàn bộ quyền được bảo lưu.</p>
+      <div class="flex items-center gap-6">
+        <a href="#loi-the" class="hover:text-spa-cream/80 transition-colors">Về Chúng Tôi</a>
+        <a href="#services" class="hover:text-spa-cream/80 transition-colors">Dịch Vụ</a>
+        <a href="#vi-tri" class="hover:text-spa-cream/80 transition-colors">Chỉ Đường</a>
+        <a href="#" class="hover:text-spa-cream/80 transition-colors">Về Đầu Trang ↑</a>
+      </div>
+    </div>
+  </Container>
+</footer>

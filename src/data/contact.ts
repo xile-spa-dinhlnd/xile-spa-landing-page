@@ -10,28 +10,29 @@
 
 export const CONTACT_CONFIG = {
   // === THÔNG TIN MẠNG XÃ HỘI & CHAT TRỰC TUYẾN ===
-  // PLACEHOLDER: Cập nhật đường link m.me khi có Fanpage ID chính thức
-  FACEBOOK_FANPAGE_URL: "https://m.me/PLACEHOLDER_FANPAGE_ID",
+  FACEBOOK_URL: "https://www.facebook.com/xilebeautyspa",
+  FACEBOOK_FANPAGE_URL: "https://www.facebook.com/xilebeautyspa",
+  MESSENGER_URL: "https://m.me/xilebeautyspa",
 
-  // PLACEHOLDER: Cập nhật số điện thoại Zalo
-  ZALO_PHONE_NUMBER: "09xxxxxxxx",
-  ZALO_URL: "https://zalo.me/09xxxxxxxx",
+  ZALO_PHONE_NUMBER: "0909722408",
+  ZALO_URL: "https://zalo.me/0909722408",
 
   // === HOTLINE & LIÊN HỆ TRỰC TIẾP ===
-  HOTLINE_DISPLAY: "09xx xxx xxx",
-  HOTLINE_TEL: "tel:09xxxxxxxx",
+  HOTLINE_DISPLAY: "0909 722 408",
+  HOTLINE_TEL: "tel:0909722408",
 
   // === ĐỊA ĐIỂM & BẢN ĐỒ ===
-  SPA_ADDRESS: "Địa chỉ Xile Spa, Quận X, TP. Hồ Chí Minh (Placeholder)",
+  SPA_ADDRESS: "67 Đ. Hưng Phú, Quận 8, TP. Hồ Chí Minh",
+  SPA_FULL_ADDRESS: "67 Đ. Hưng Phú, Quận 8, Hồ Chí Minh 700000, Việt Nam",
   GOOGLE_MAPS_EMBED_URL:
-    "https://www.google.com/maps/embed?pb=PLACEHOLDER_EMBED_URL",
-  GOOGLE_MAPS_DIRECTIONS_URL: "https://maps.google.com/?q=Xile+Spa",
+    "https://www.google.com/maps?q=67+%C4%90.+H%C6%B0ng+Ph%C3%BA,+Qu%E1%BA%ADn+8,+H%E1%BB%93+Ch%C3%AD+Minh&output=embed",
+  GOOGLE_MAPS_DIRECTIONS_URL: "https://maps.app.goo.gl/XafAJZNHmoeHtmjk6",
 
   // === MENU DỊCH VỤ ĐÃ TRIỂN KHAI ===
   MENU_URL: "https://xile-spa-dinhlnd.github.io/xile-spa-menu/",
 
   // === GIỜ MỞ CỬA ===
-  OPENING_HOURS: "09:00 - 21:00 (Mở cửa tất cả các ngày trong tuần)",
+  OPENING_HOURS: "09:00 - 21:00 (Tất cả các ngày trong tuần)",
 } as const;
 
 export type ContactConfigType = typeof CONTACT_CONFIG;

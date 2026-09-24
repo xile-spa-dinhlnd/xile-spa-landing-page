@@ -14,19 +14,19 @@
         (HOÀN THÀNH)                       (HOÀN THÀNH)                       (HOÀN THÀNH)
 
 [Phase 3: Services & Proof] ─────► [Phase 4: Location & Sticky] ────► [Phase 5 & 6: SEO & Deploy]
-      ██████████ 100%                     ░░░░░░░░░░  0%                    ░░░░░░░░░░  0%
-        (HOÀN THÀNH)                    (TIẾP THEO)                       (CHỜ TRIỂN KHAI)
+      ██████████ 100%                    ██████████ 100%                     ░░░░░░░░░░  0%
+        (HOÀN THÀNH)                       (HOÀN THÀNH)                    (TIẾP THEO)
 ```
 
-| Phase | Trọng tâm công việc | Trạng thái | Đầu ra dự kiến |
+| Phase | Trọng tâm công việc | Trạng thái | Đầu ra thực tế |
 |:---:|---|:---:|---|
 | **Phase 0** | Khởi tạo dự án, Tech Stack, Rules & Skills | <kbd>ĐÃ XONG</kbd> | Astro 5, React 19, Tailwind, `.agents/`, `AGENTS.md`, Build pass |
 | **Phase 1** | Chuẩn hóa Dataset 3 trụ cột & Core UI Components | <kbd>ĐÃ XONG</kbd> | `services.ts`, `testimonials.ts`, `usps.ts`, `Button`, `Badge` |
-| **Phase 2** | Xây dựng Header/Navbar, Hero Section & 3 USPs | <kbd>ĐÃ XONG</kbd> | `Navbar.astro`, `HeroSection.astro`, `UspsSection.astro` |
-| **Phase 3** | Showcase 3 Nhóm Dịch Vụ & Social Proof Feedback | <kbd>ĐÃ XONG</kbd> | `ServicesSection.astro`, `FeedbackSection.astro` |
-| **Phase 4** | Location, Google Maps, Footer & Floating Widget | 🟡 **Kế tiếp** | `LocationSection.astro`, `Footer.astro`, `FloatingContact.tsx` |
-| **Phase 5** | Tối ưu SEO, Core Web Vitals 95–100 & Schema | ⚪ Chờ | Schema JSON-LD `BeautySalon`, Audit LCP < 1.2s, CLS = 0 |
-| **Phase 6** | Kiểm thử Responsive mọi thiết bị & Deploy | ⚪ Chờ | Test iPhone/Android/Desktop, sẵn sàng xuất bản |
+| **Phase 2** | Xây dựng Header/Navbar, Hero Section & 3 USPs | <kbd>ĐÃ XONG</kbd> | `Navbar.astro`, `HeroSection.astro`, `UspsSection.astro`, Logo Master |
+| **Phase 3** | Showcase 3 Nhóm Dịch Vụ & Social Proof Feedback | <kbd>ĐÃ XONG</kbd> | `ServicesSection.astro`, `FeedbackSection.astro`, Tích hợp ảnh thật |
+| **Phase 4** | Location, Google Maps, Footer & Floating Widget | <kbd>ĐÃ XONG</kbd> | `LocationSection.astro`, `Footer.astro`, `FloatingContact.astro` |
+| **Phase 5** | Tối ưu SEO, Core Web Vitals 95–100 & Schema | 🟡 **Kế tiếp** | Schema JSON-LD `BeautySalon`, Audit LCP < 1.2s, CLS = 0 |
+| **Phase 6** | Kiểm thử Responsive mọi thiết bị & Xuất bản | ⚪ Chờ | Test iPhone/Android/Desktop, sẵn sàng xuất bản |
 
 ---
 
@@ -88,19 +88,23 @@
 
 ---
 
-### Phase 4: Location, Google Maps, Footer & Floating Widget
-- [ ] **`LocationSection.astro`:**
-  - [ ] Cột thông tin: Giờ mở cửa (09:00 - 21:00), Hotline, Địa chỉ cụ thể.
-  - [ ] Cột bản đồ: Nhúng Google Maps iframe mượt mà, hỗ trợ nút bấm mở ứng dụng Google Maps chỉ đường.
-- [ ] **`Footer.astro`:**
-  - [ ] Logo, lời giới thiệu ngắn, liên kết mạng xã hội, bản quyền © 2026 Xile Spa.
-- [ ] **`FloatingContact.tsx` (React Island - `client:idle`):**
-  - [ ] Nút Zalo ghim góc dưới màn hình.
-  - [ ] Nút Messenger với hiệu ứng sóng lan tỏa (`animate-pulse`) thu hút bấm mà không che nội dung.
+### Phase 4: Location, Google Maps, Footer & Floating Widget (Đã hoàn thành ✅)
+- [x] **`LocationSection.astro` (`#vi-tri`):**
+  - [x] Bộ sưu tập 4 ảnh không gian thực tế (`hair-wash-02.jpg`, `skin-04.jpg`, `hair-wash-03.jpg`, `skin-06.jpg`).
+  - [x] Cột thông tin: Giờ mở cửa (`09:00 - 21:00`), Hotline (`0909 722 408`), Địa chỉ (`67 Đ. Hưng Phú, Q.8`).
+  - [x] Cột bản đồ: Nhúng Google Maps iframe tương tác mượt mà, hỗ trợ nút bấm mở ứng dụng Google Maps chỉ đường (`https://maps.app.goo.gl/XafAJZNHmoeHtmjk6`).
+- [x] **`Footer.astro`:**
+  - [x] Master logo Xile Spa, lời giới thiệu định vị, đầy đủ NAP (Name, Address, Phone) chuẩn Local SEO.
+  - [x] Liên kết mạng xã hội (Facebook Fanpage, Zalo, Google Maps), bản quyền © 2026 Xile Spa.
+- [x] **`FloatingContact.astro` (Sticky Quick Contact):**
+  - [x] Nút Gọi điện (`tel:0909722408`).
+  - [x] Nút Chat Zalo (`https://zalo.me/0909722408`).
+  - [x] Nút Messenger với hiệu ứng sóng lan tỏa (`animate-ping`) thu hút bấm mà không che nội dung.
+- [x] Lắp ráp toàn diện vào [src/pages/index.astro](file:///Users/dinhlu2482/Desktop/XileSpa/xile-spa-landing-page/src/pages/index.astro).
 
 ---
 
-### Phase 5: Tối Ưu SEO & Hiệu Năng Core Web Vitals (95–100 Điểm)
+### Phase 5: Tối Ưu SEO & Hiệu Năng Core Web Vitals (95–100 Điểm) (Tiếp theo 🟡)
 - [ ] Xác thực thẻ Schema JSON-LD `BeautySalon` / `LocalBusiness` với đầy đủ danh mục dịch vụ.
 - [ ] Tối ưu hóa ảnh qua `astro:assets` (`<Image />` WebP, `loading="eager"` cho LCP và `loading="lazy"` cho các ảnh phía dưới).
 - [ ] Đo đạc chỉ số: LCP < 1.2s, CLS = 0.00, INP < 50ms trên giả lập mạng di động 4G.

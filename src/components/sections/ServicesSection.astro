@@ -7,10 +7,10 @@ import { SERVICES_DATA } from '@/data/services';
 import { CONTACT_CONFIG } from '@/data/contact';
 import { Leaf, Sparkles, Activity, CheckCircle2, Clock } from 'lucide-react';
 
-// Images imported from assets for Astro optimization
-import headSpaImg from '@/assets/head-spa-pics/service-head-spa.jpg';
-import skincarePeelImg from '@/assets/skincare-pics/service-skincare-peel.jpg';
-import sportsRehabImg from '@/assets/sport-rehab-pics/service-sports-rehab.jpg';
+// Images imported from assets for Astro optimization — Ảnh thực tế dịch vụ Xile Spa
+import headSpaImg from '@/assets/head-spa-pics/hair-wash-01.jpg';
+import skincarePeelImg from '@/assets/skincare-pics/skin-01.jpg';
+import sportsRehabImg from '@/assets/sport-rehab-pics/rehab-01.jpg';
 
 // Group services by category, take featured ones first
 const headSpaServices = SERVICES_DATA
@@ -29,13 +29,13 @@ const serviceGroups = [
   {
     id: 'head-spa',
     number: '01',
-    categoryLabel: 'Gội Đầu Thư Giãn',
-    title: 'Gội Đầu & Dưỡng Sinh',
-    titleHighlight: 'Thảo Mộc Tươi',
+    categoryLabel: 'Dưỡng Sinh Trung Hoa',
+    title: 'Gội Đầu Dưỡng Sinh Trung Hoa &',
+    titleHighlight: 'Trị Liệu Cổ Vai Gáy',
     subtitle:
-      'Buông bỏ mệt mỏi, thư giãn trọn vẹn với liệu pháp gội đầu thảo dược đun nấu truyền thống kết hợp bấm huyệt đả thông kinh lạc.',
+      'Quy trình dưỡng sinh Trung Hoa đun nấu từ bồ kết & thảo mộc tươi kết hợp ấn huyệt đả thông kinh lạc, giải phóng cơn đau mỏi vùng cổ vai gáy tức thì.',
     image: headSpaImg,
-    imageAlt: 'Gội đầu thư giãn thảo mộc tươi tại Xile Spa',
+    imageAlt: 'Gội đầu dưỡng sinh Trung Hoa trị liệu cổ vai gáy tại Xile Spa',
     accentColor: 'spa-sage',
     badgeVariant: 'sage' as const,
     services: headSpaServices,
@@ -47,13 +47,13 @@ const serviceGroups = [
   {
     id: 'skincare-peel',
     number: '02',
-    categoryLabel: 'Chăm Da & Peel Da',
-    title: 'Chăm Sóc Da &',
+    categoryLabel: 'Chăm Da • Peel Da • Uốn Mi',
+    title: 'Chăm Sóc Da - Mụn - Nám - Sẹo Rỗ &',
     titleHighlight: 'Peel Da Tái Sinh',
     subtitle:
-      'Liệu trình làm da chuyên sâu, peel tái tạo bề mặt an toàn — gom cồi mụn, mờ thâm, sáng da rạng rỡ từ bên trong.',
+      'Phác đồ điều trị mụn, mờ nám, đầy sẹo rỗ chuẩn y khoa kết hợp peel da sinh học tái tạo đa tầng và uốn mi collagen chuẩn Hàn Quốc.',
     image: skincarePeelImg,
-    imageAlt: 'Liệu trình chăm sóc da và peel da tái sinh tại Xile Spa',
+    imageAlt: 'Chăm sóc da mụn nám sẹo rỗ và peel da sinh học tại Xile Spa',
     accentColor: 'spa-terracotta',
     badgeVariant: 'terracotta' as const,
     services: skincareServices,
@@ -65,13 +65,13 @@ const serviceGroups = [
   {
     id: 'sports-rehab',
     number: '03',
-    categoryLabel: 'Sports Rehab',
-    title: 'Giải Cơ Sâu &',
-    titleHighlight: 'Sports Rehab',
+    categoryLabel: 'Sports Therapy',
+    title: 'Sports Therapy &',
+    titleHighlight: 'Giải Cơ Sâu Toàn Diện',
     subtitle:
-      'Giải phóng trigger points co cứng, phục hồi vận động sau thể thao và trị liệu đau mỏi cổ vai gáy cho dân văn phòng.',
+      'Giải phóng các điểm co cứng cơ (trigger points), phục hồi vận động sau chơi thể thao (Gym, Chạy bộ, Pickleball, Tennis) và giảm đau mỏi mãn tính.',
     image: sportsRehabImg,
-    imageAlt: 'Sports Rehab giải cơ sâu phục hồi vận động tại Xile Spa',
+    imageAlt: 'Sports Therapy giải cơ sâu phục hồi vận động tại Xile Spa',
     accentColor: 'spa-bronze',
     badgeVariant: 'bronze' as const,
     services: rehabServices,
