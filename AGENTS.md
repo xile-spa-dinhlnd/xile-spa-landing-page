@@ -1,6 +1,11 @@
 # AGENTS.md — Xile Spa Landing Page Master Directives
 
-Dự án này là trang **Landing Page đơn trang (Single-Page)** cho thương hiệu **Xile Spa**, hướng tới phân khúc cao cấp (luxury, wellness & healing), tối ưu chuyển đổi qua Zalo / Messenger và chuẩn SEO địa phương.
+Dự án này là trang **Landing Page đơn trang (Single-Page)** cho thương hiệu **Xile Spa** — mô hình chăm sóc và trị liệu hiện đại, kết hợp hài hòa giữa **Thư Giãn Tinh Thần, Chăm Sóc Da Chuyên Sâu & Phục Hồi Thể Lực (Sports Rehab)**:
+1. **Gội đầu thư giãn & Dưỡng sinh:** Xoa dịu mệt mỏi, chăm sóc da đầu và tóc, xả stress tức thì.
+2. **Chăm sóc da & Peel da tái sinh:** Liệu trình làm da chuyên sâu, chemical/bio peel tái tạo da, trị thâm mụn, làm sáng và phục hồi.
+3. **Rehab thể thao & Giải cơ / Giãn cơ sâu (Sports Rehab & Myofascial Release):** Giải phóng các điểm co cứng cơ (trigger points), phục hồi vận động sau chơi thể thao (Gym, Chạy bộ, Pickleball, Tennis...) và trị liệu đau mỏi cổ vai gáy cho dân văn phòng.
+
+Trang web tối ưu tỷ lệ chuyển đổi tư vấn/đặt lịch qua Zalo & Facebook Messenger, điều hướng xem Menu giá và đạt chuẩn SEO địa phương.
 
 Toàn bộ AI agent (Antigravity) hoạt động trong workspace này PHẢI đọc và tuân thủ các quy tắc dưới đây.
 

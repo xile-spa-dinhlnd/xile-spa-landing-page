@@ -3,85 +3,71 @@
 ## 1. TỔNG QUAN DỰ ÁN & MỤC TIÊU KINH DOANH
 
 - **Tên thương hiệu:** Xile Spa
-- **Loại dự án:** Landing Page đơn trang (Single-Page Landing Page) phục vụ chiến dịch chạy quảng cáo (Meta Ads, TikTok Ads) và tối ưu SEO địa phương (Local SEO).
+- **Định vị & Mô hình dịch vụ:** Không gian chăm sóc toàn diện kết hợp giữa **Thư Giãn, Trị Liệu Da Chuyên Sâu & Phục Hồi Vận Động (Sports Rehab)**:
+  1. **Gội đầu thư giãn & Dưỡng sinh:** Xoa dịu căng thẳng, chăm sóc da đầu, giải tỏa stress tức thì.
+  2. **Chăm sóc da & Peel da chuyên sâu:** Trị liệu da, làm sạch chuyên sâu, peel da tái tạo tế bào (trị thâm mụn, làm sáng, trẻ hóa và phục hồi hàng rào bảo vệ da).
+  3. **Rehab thể thao & Giải cơ / Giãn cơ chuyên sâu (Sports Rehab & Myofascial Release):** Giải phóng các điểm co thắt cơ (trigger points), kéo giãn cơ tầng sâu, phục hồi thể lực cho người chơi thể thao (Gym, Chạy bộ, Pickleball, Tennis...) và dân văn phòng đau mỏi cổ vai gáy, thắt lưng.
+- **Loại dự án:** Landing Page đơn trang (Single-Page Landing Page) tối ưu chuyển đổi từ quảng cáo (Meta Ads, TikTok Ads) và SEO địa phương (Local SEO).
 - **Mục tiêu chuyển đổi cốt lõi (Conversion Goal):**
-  - Kích thích khách hàng bấm vào nút chat để tư vấn đặt lịch qua **Facebook Messenger** hoặc **Zalo**.
+  - Kích thích khách hàng bấm vào nút chat để nhận tư vấn & đặt lịch nhanh qua **Facebook Messenger** hoặc **Zalo**.
   - Điều hướng khách hàng xem bảng giá đầy đủ tại Menu đã triển khai: `https://xile-spa-dinhlnd.github.io/xile-spa-menu/`.
-- **Triết lý sản phẩm:** Tối giản, sang trọng, mang lại cảm giác thư giãn (healing/wellness). Website phải đạt tốc độ tải trang cực nhanh trên mạng di động 4G/5G (Google Core Web Vitals 95–100 điểm).
+- **Triết lý sản phẩm:** Hiện đại, sang trọng, thư thái và hiệu quả thực chứng. Tốc độ tải trang cực nhanh trên mạng di động 4G (Google Core Web Vitals 95–100 điểm).
 
 ---
 
 ## 2. TECH STACK & KIẾN TRÚC KỸ THUẬT
 
-- **Framework:** **Astro** (chế độ Static Site Generation - SSG).
+- **Framework:** **Astro** (Static Site Generation - SSG).
+- **Interactive Islands:** **React** (với client directives `client:visible`, `client:idle`).
 - **Styling:** **Tailwind CSS**.
-- **Ngôn ngữ:** **TypeScript**.
-- **Interactive Islands (Đảo tương tác):** **React** (CHỈ dùng khi thực sự cần thiết, ví dụ: Image Carousel/Slider hoặc Modal nếu có).
-- **Icons:** Lucide Icons hoặc SVG nội tuyến tối ưu.
-- **Tối ưu hình ảnh:** Thư viện tích hợp `astro:assets` (`<Image />`).
-- **Triển khai (Deployment):** GitHub Pages
+- **Ngôn ngữ:** **TypeScript** (Strict Mode, không dùng `any`).
+- **Icons:** Lucide Icons.
+- **Tối ưu hình ảnh:** `astro:assets` (`<Image />`).
+- **Triển khai (Deployment):** GitHub Pages.
 
 ---
 
-## 3. NGUYÊN TẮC THIẾT KẾ UI/UX (SPA & HEALING STYLE)
+## 3. NGUYÊN TẮC THIẾT KẾ UI/UX (QUIET LUXURY & MODERN WELLNESS)
 
-Mọi giao diện do AI tạo ra hoặc chỉnh sửa PHẢI tuân thủ các quy chuẩn sau:
-
-### Bảng màu (Quy tắc 60 - 30 - 10)
-
-- **Màu nền (60%):** `#FDFBF7` (Kem ấm) hoặc `#FAF9F6` (Trắng ngà). TUYỆT ĐỐI KHÔNG dùng màu trắng tinh `#FFFFFF` làm nền toàn trang hoặc màu đen kịt `#000000` cho văn bản.
-- **Màu phụ trợ (30%):** Xanh xô thơm (`#8A9A86` / Sage Green), be ấm, nâu gỗ nhạt để tạo các khối card hoặc phân cách section.
-- **Màu điểm nhấn (10% - Dành cho CTA/Badge):** Nâu đồng cổ điển (`#C5A880`) hoặc cam đất mềm mại (`#D97757`).
-- **Màu chữ chính:** Xám than ấm (`#2D3748`), không dùng đen nguyên chất để tránh tạo cảm giác chói mắt.
-
-### Typography (Font chữ)
-
-- **Heading (H1, H2, H3):** Serif sang trọng, thanh mảnh (`Playfair Display`, `Cormorant Garamond`).
-- **Body text (p, span, li):** Sans-serif hiện đại, dễ đọc trên di động (`Plus Jakarta Sans`, `Be Vietnam Pro`).
-
-### Khoảng cách & Hiệu ứng
-
-- **Negative Space (Khoảng trắng):** Khoảng đệm section thoáng rộng (`py-16` đến `py-24` trên Desktop, `py-12` trên Mobile).
-- **Bo góc:** Mềm mại (`rounded-2xl` hoặc `rounded-3xl`).
-- **Shadow:** Đổ bóng rất nhẹ, mờ mịn (`shadow-sm`, `shadow-md` với tông màu ấm).
+- **Bảng màu 60 - 30 - 10:**
+  - **Màu nền (60%):** `#FDFBF7` (Kem ấm) hoặc `#FAF9F6` (Trắng ngà).
+  - **Màu phụ trợ (30%):** Xanh xô thơm (`#8A9A86` / Sage Green), be ấm, xám nhạt để tạo card và phân tách section.
+  - **Màu điểm nhấn (10% - Dành cho CTA/Badge):** Nâu đồng ánh kim (`#C5A880`) hoặc cam đất mềm (`#D97757`).
+  - **Màu chữ chính:** Xám than ấm (`#2D3748`).
+- **Typography:**
+  - Heading: Serif sang trọng thanh lịch (`Cormorant Garamond`, `Playfair Display`).
+  - Body & Price: Sans-serif hiện đại, rõ nét (`Plus Jakarta Sans`, `Be Vietnam Pro`).
+- **Khoảng cách & Hiệu ứng:**
+  - Spacing thoáng đãng (`py-20` trên desktop, `py-12` trên mobile).
+  - Bo góc mềm mại (`rounded-2xl` hoặc `rounded-3xl`).
+  - Đổ bóng nhẹ ấm (`shadow-spa-soft`).
 
 ---
 
-## 4. CẤU TRÚC TRANG (LANDING PAGE SECTIONS)
+## 4. CẤU TRÚC LANDING PAGE CHI TIẾT
 
-Trang bao gồm các thành phần được sắp xếp theo thứ tự chuyển đổi từ trên xuống dưới:
-
-1. **Header / Navbar:** Logo Xile Spa tối giản, hotline, nút CTA nhanh.
+1. **Header / Navbar:** Logo Xile Spa tối giản, hotline, nút CTA nhanh "Đặt Lịch Ngay".
 2. **Hero Section:**
-   - Tiêu đề H1 chuẩn SEO nêu bật giá trị cốt lõi (Vd: Dịch vụ spa, gội đầu dưỡng sinh & thư giãn chuyên sâu).
-   - Nút CTA chính: "Nhận Ưu Đãi / Tư Vấn Ngay" (mở Messenger/Zalo).
-   - Nút CTA phụ: "Xem Menu Dịch Vụ" (link trỏ sang `https://xile-spa-dinhlnd.github.io/xile-spa-menu/`).
-3. **Core USPs (Điểm khác biệt):** 3-4 thế mạnh (Không gian chuẩn organic, Kỹ thuật viên lành nghề, Dược liệu tự nhiên).
-4. **Featured Services (Dịch vụ nổi bật):** Trích chọn 3-4 gói dịch vụ "chủ lực" kèm hình ảnh, thời lượng, mức giá và nút bấm chuyển tiếp sang Menu.
-5. **Customer Social Proof / Feedback:** Hình ảnh khách hàng thực tế và đánh giá tích cực.
-6. **Location & Contact:** Bản đồ, địa chỉ cụ thể, giờ mở cửa.
-7. **Footer:** Thông tin bản quyền, liên kết xã hội, chính sách.
-8. **Floating Contact Widget (Ghim góc dưới màn hình):**
-   - 1 nút Zalo: `https://zalo.me/<PHONE_NUMBER>`
-   - 1 nút Messenger: `https://m.me/<FANPAGE_ID>` (có hiệu ứng pulse nhẹ thu hút bấm).
+   - Tiêu đề H1 chuẩn SEO: Nêu bật 3 trụ cột (Thư Giãn Gội Đầu, Trị Liệu Làm Da/Peel & Rehab Giải Cơ Thể Thao).
+   - Nút CTA chính: "Tư Vấn & Đặt Lịch Hẹn" (mở Messenger/Zalo).
+   - Nút CTA phụ: "Xem Menu Dịch Vụ" (link trỏ sang Menu).
+3. **Core USPs (Điểm khác biệt):**
+   - Chăm sóc da chuyên sâu với kỹ thuật Peel tái tạo an toàn, cá nhân hóa.
+   - Trị liệu Rehab giải cơ chuyên sâu cho cơ bắp vận động & dân văn phòng.
+   - Không gian gội đầu dưỡng sinh thư thái tuyệt đối.
+4. **Featured Services (3 Nhóm Dịch Vụ Chủ Lực):**
+   - **Nhóm 1: Gội Đầu Dưỡng Sinh & Thư Giãn:** Đả thông kinh lạc, chăm sóc tóc & da đầu.
+   - **Nhóm 2: Chăm Sóc Da & Peel Da Tái Tạo:** Trị thâm mụn, trẻ hóa da, căng bóng phục hồi.
+   - **Nhóm 3: Sports Rehab & Giải Cơ Chuyên Sâu:** Giải phóng bó cơ, giãn cơ sâu, phục hồi cơ khớp.
+5. **Customer Social Proof / Feedback:** Cảm nhận của khách hàng (cả khách nữ chăm da/gội đầu và khách chơi thể thao/văn phòng giải cơ).
+6. **Location & Contact:** Bản đồ, địa chỉ, hotline, giờ mở cửa.
+7. **Footer:** Bản quyền, chính sách, thông tin liên hệ.
+8. **Floating Contact Widget (Góc dưới màn hình):** Nút Zalo + Nút Messenger (hiệu ứng pulse).
 
 ---
 
-## 5. BẮT BUỘC VỀ SEO & PERFORMANCE
+## 5. DỮ LIỆU TĨNH & QUY TẮC PHÁT TRIỂN
 
-- **Zero-JS by Default:** Toàn bộ Header, Hero, USPs, Featured Services, Feedback và Footer PHẢI viết bằng cú pháp `.astro` thuần túy. KHÔNG bọc vào React Component nếu không có tương tác người dùng phức tạp.
-- **Client Directives:** Nếu dùng React Component, chỉ sử dụng `client:visible` hoặc `client:idle`. Tránh dùng `client:load` trừ khi bắt buộc.
-- **Tối ưu hình ảnh:** Bắt buộc import ảnh thông qua `<Image />` từ `astro:assets` để tự động chuyển sang WebP/AVIF và chống giật bố cục (CLS = 0).
-- **Heading Hierarchy:** Duy nhất **1 thẻ `<h1>`** trên toàn trang. Thẻ `<h2>` cho từng section.
-- **Structured Data:** Bắt buộc nhúng Schema JSON-LD `BeautySalon` / `LocalBusiness` vào thẻ `<head>` của layout.
-- **Accessibility:** Mọi thẻ `<a>`, `<button>` dạng icon (không có text) phải có thuộc tính `aria-label`.
-
----
-
-## 6. QUY TẮC DÀNH CHO AI KHI SINH MÃ (AI CODING RULES)
-
-1. **Không giả định có Backend:** Đây là trang tĩnh 100%, không viết code gọi API REST hay kết nối database. Mọi dữ liệu (dịch vụ, feedback) lưu trực tiếp trong các file tĩnh (`src/data/*.ts`).
-2. **Không cài thư viện thừa:** Không tự ý cài đặt thêm các thư viện UI cồng kềnh (như Material-UI, Ant Design, Bootstrap). Chỉ dùng Tailwind CSS.
-3. **Giữ phong cách code sạch:**
-   - Dùng TypeScript strict mode, khai báo interface/type rõ ràng cho props.
-   - Code mobile-first: Ưu tiên kích thước và trải nghiệm trên điện thoại trước, sau đó mới dùng breakpoint `md:`, `lg:` cho máy tính.
+1. Không dùng backend, toàn bộ dữ liệu nằm trong `src/data/*.ts`.
+2. Mọi link liên hệ sử dụng hằng số từ `src/data/contact.ts`.
+3. Tuân thủ 100% chuẩn TypeScript strict mode và Zero-JS mặc định.
