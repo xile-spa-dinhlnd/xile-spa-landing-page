@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { CONTACT_CONFIG } from '@/data/contact';
+---
+
+<BaseLayout>
+  <main class="flex flex-col items-center justify-center min-h-screen px-4 text-center relative overflow-hidden">
+    <!-- Ambient Blur Background -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-spa-sage/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-spa-bronze/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-spa-sage-light border border-spa-sage/20 mb-6">
+        <span class="w-2 h-2 rounded-full bg-spa-sage animate-pulse"></span>
+        <span class="text-xs uppercase tracking-widest font-medium text-spa-sage">Xile Spa Wellness & Healing</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-spa-charcoal font-normal tracking-tight mb-6 leading-tight">
+        Chạm Vào Yên Bình, <br />
+        <span class="italic text-spa-bronze">Tái Sinh Năng Lượng</span> Tự Nhiên
+      </h1>
+
+      <p class="max-w-xl mx-auto text-base sm:text-lg text-spa-wood mb-8 font-light leading-relaxed">
+        Không gian dưỡng sinh thảo dược và trị liệu chuyên sâu. Dự án đã được thiết lập hoàn tất với Astro SSG + React + Tailwind CSS.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href={CONTACT_CONFIG.FACEBOOK_FANPAGE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-spa-bronze hover:bg-spa-bronze/90 text-spa-cream font-medium tracking-wide shadow-spa-soft transition-all duration-300 hover:-translate-y-0.5"
+        >
+          Nhận Ưu Đãi Đặt Lịch
+        </a>
+        <a 
+          href={CONTACT_CONFIG.MENU_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto px-8 py-3.5 rounded-full border border-spa-sage/30 text-spa-charcoal hover:bg-spa-sage-light/50 transition-all duration-300"
+        >
+          Xem Menu Dịch Vụ
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
