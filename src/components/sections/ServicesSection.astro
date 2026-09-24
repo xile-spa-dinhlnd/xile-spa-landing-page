@@ -3,226 +3,364 @@ import { Image } from 'astro:assets';
 import Container from '@/components/common/Container.astro';
 import SectionHeading from '@/components/common/SectionHeading.astro';
 import Button from '@/components/common/Button.astro';
-import { SERVICES_DATA } from '@/data/services';
 import { CONTACT_CONFIG } from '@/data/contact';
-import { Leaf, Sparkles, Activity, CheckCircle2, Clock } from 'lucide-react';
+import { Leaf, Sparkles, Activity, Clock, ArrowRight, Heart } from 'lucide-react';
 
-// Images imported from assets for Astro optimization — Ảnh thực tế dịch vụ Xile Spa
-import headSpaImg from '@/assets/head-spa-pics/hair-wash-01.jpg';
-import skincarePeelImg from '@/assets/skincare-pics/skin-01.jpg';
-import sportsRehabImg from '@/assets/sport-rehab-pics/rehab-01.jpg';
+// Authentic images for the 6 signature therapy cards
+import headWash01 from '@/assets/head-spa-pics/hair-wash-01.jpg';
+import headWash02 from '@/assets/head-spa-pics/hair-wash-02.jpg';
+import skin01 from '@/assets/skincare-pics/skin-01.jpg';
+import skin03 from '@/assets/skincare-pics/skin-03.jpg';
+import rehab01 from '@/assets/sport-rehab-pics/rehab-01.jpg';
+import skin05 from '@/assets/skincare-pics/skin-05.jpg';
 
-// Group services by category, take featured ones first
-const headSpaServices = SERVICES_DATA
-  .filter((s) => s.category === 'head-spa')
-  .sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
-
-const skincareServices = SERVICES_DATA
-  .filter((s) => s.category === 'skincare-peel')
-  .sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
-
-const rehabServices = SERVICES_DATA
-  .filter((s) => s.category === 'sports-rehab')
-  .sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
-
-const serviceGroups = [
+const signatureServices = [
   {
-    id: 'head-spa',
-    number: '01',
+    id: 'head-spa-relax',
+    category: 'head-spa',
+    categoryLabel: 'Dưỡng Sinh Thảo Mộc',
+    badgeVariant: 'sage',
+    title: 'Gội Dưỡng Sinh Thảo Dược Tự Nhiên',
+    description:
+      'Làm sạch dịu nhẹ nang tóc với 100% thảo mộc tự nhiên, kết hợp massage đầu thư giãn và đắp mặt nạ cấp ẩm giúp phục hồi tinh thần.',
+    duration: '60 PHÚT',
+    price: '250.000đ',
+    originalPrice: '300.000đ',
+    image: headWash01,
+    imageAlt: 'Gội dưỡng sinh thảo dược tự nhiên tại Xile Spa',
+    objectPosition: '50% 45%', // True center: shows specialists, massage hands, customer face & bamboo ambiance
+  },
+  {
+    id: 'head-spa-premium',
+    category: 'head-spa',
     categoryLabel: 'Dưỡng Sinh Trung Hoa',
-    title: 'Gội Đầu Dưỡng Sinh Trung Hoa &',
-    titleHighlight: 'Trị Liệu Cổ Vai Gáy',
-    subtitle:
-      'Quy trình dưỡng sinh Trung Hoa đun nấu từ bồ kết & thảo mộc tươi kết hợp ấn huyệt đả thông kinh lạc, giải phóng cơn đau mỏi vùng cổ vai gáy tức thì.',
-    image: headSpaImg,
+    badgeVariant: 'sage',
+    title: 'Dưỡng Sinh Trung Hoa & Trị Liệu Cổ Vai Gáy',
+    description:
+      'Đả thông kinh lạc vùng đầu - cổ vai gáy với vòm nước thảo dược tuần hoàn ấm áp, xoa dịu đau đầu và mang lại giấc ngủ sâu tự nhiên.',
+    duration: '75 PHÚT',
+    price: '350.000đ',
+    originalPrice: '420.000đ',
+    image: headWash02,
     imageAlt: 'Gội đầu dưỡng sinh Trung Hoa trị liệu cổ vai gáy tại Xile Spa',
-    accentColor: 'spa-sage',
-    badgeVariant: 'sage' as const,
-    services: headSpaServices,
-    ctaZalo: CONTACT_CONFIG.ZALO_URL,
-    ctaMenu: CONTACT_CONFIG.MENU_URL,
-    imageLeft: true,
-    bgClass: 'bg-spa-cream',
+    objectPosition: '50% 42%', // True center: shows therapist smile, head acupressure, and resting client
+  },
+  {
+    id: 'skincare-deep',
+    category: 'skincare',
+    categoryLabel: 'Chăm Da Chuẩn Y Khoa',
+    badgeVariant: 'terracotta',
+    title: 'Chăm Sóc Da Chuyên Sâu — Mụn, Nám & Sẹo Rỗ',
+    description:
+      'Quy trình vô trùng y khoa lấy sạch nhân mụn, hút bã nhờn, điện di tinh chất phục hồi kháng viêm và làm mờ thâm nám cho nền da sáng khỏe.',
+    duration: '75 PHÚT',
+    price: '390.000đ',
+    originalPrice: '480.000đ',
+    image: skin01,
+    imageAlt: 'Chăm sóc da mụn nám sẹo rỗ chuẩn y khoa tại Xile Spa',
+    objectPosition: '50% 38%', // True center: aesthetician, treatment lamp, and client facial care in full harmony
   },
   {
     id: 'skincare-peel',
-    number: '02',
-    categoryLabel: 'Chăm Da • Peel Da • Uốn Mi',
-    title: 'Chăm Sóc Da - Mụn - Nám - Sẹo Rỗ &',
-    titleHighlight: 'Peel Da Tái Sinh',
-    subtitle:
-      'Phác đồ điều trị mụn, mờ nám, đầy sẹo rỗ chuẩn y khoa kết hợp peel da sinh học tái tạo đa tầng và uốn mi collagen chuẩn Hàn Quốc.',
-    image: skincarePeelImg,
-    imageAlt: 'Chăm sóc da mụn nám sẹo rỗ và peel da sinh học tại Xile Spa',
-    accentColor: 'spa-terracotta',
-    badgeVariant: 'terracotta' as const,
-    services: skincareServices,
-    ctaZalo: CONTACT_CONFIG.ZALO_URL,
-    ctaMenu: CONTACT_CONFIG.MENU_URL,
-    imageLeft: false,
-    bgClass: 'bg-spa-beige',
+    category: 'skincare',
+    categoryLabel: 'Peel Da Sinh Học',
+    badgeVariant: 'terracotta',
+    title: 'Peel Da Sinh Học Tái Sinh Đa Tầng',
+    description:
+      'Khai mở làn da mới bằng acid hữu cơ sinh học an toàn, loại bỏ tế bào sừng già, gom cồi mụn và làm mờ thâm sạm mà không gây bong tróc thô bạo.',
+    duration: '75 PHÚT',
+    price: '590.000đ',
+    originalPrice: '750.000đ',
+    image: skin03,
+    imageAlt: 'Peel da sinh học tái sinh đa tầng tại Xile Spa',
+    objectPosition: '50% 48%', // True center: full facial peel treatment in clear focus
   },
   {
-    id: 'sports-rehab',
-    number: '03',
+    id: 'sports-therapy',
+    category: 'rehab',
     categoryLabel: 'Sports Therapy',
-    title: 'Sports Therapy &',
-    titleHighlight: 'Giải Cơ Sâu Toàn Diện',
-    subtitle:
-      'Giải phóng các điểm co cứng cơ (trigger points), phục hồi vận động sau chơi thể thao (Gym, Chạy bộ, Pickleball, Tennis) và giảm đau mỏi mãn tính.',
-    image: sportsRehabImg,
-    imageAlt: 'Sports Therapy giải cơ sâu phục hồi vận động tại Xile Spa',
-    accentColor: 'spa-bronze',
-    badgeVariant: 'bronze' as const,
-    services: rehabServices,
-    ctaZalo: CONTACT_CONFIG.ZALO_URL,
-    ctaMenu: CONTACT_CONFIG.MENU_URL,
-    imageLeft: true,
-    bgClass: 'bg-spa-cream',
+    badgeVariant: 'bronze',
+    title: 'Sports Therapy & Giải Cơ Sâu Vận Động',
+    description:
+      'Kỹ thuật Myofascial Release giải phóng các điểm co cứng cơ (trigger points), phục hồi vận động sau Gym, Pickleball, Tennis và dân văn phòng.',
+    duration: '75 PHÚT',
+    price: '490.000đ',
+    originalPrice: '600.000đ',
+    image: rehab01,
+    imageAlt: 'Sports Therapy giải cơ sâu phục hồi cơ bắp tại Xile Spa',
+    objectPosition: '50% 52%', // True center: therapist and deep muscle release massage in full view
+  },
+  {
+    id: 'lash-lift',
+    category: 'skincare',
+    categoryLabel: 'Thẩm Mỹ Chuẩn Hàn',
+    badgeVariant: 'terracotta',
+    title: 'Uốn Mi Collagen Chuẩn Hàn Phủ Bóng',
+    description:
+      'Định hình trục cong tự nhiên hài hòa dáng mắt, phủ tinh chất Collagen Nano dưỡng từng sợi mi đen bóng, chắc khỏe và giữ nếp 6–8 tuần.',
+    duration: '45 PHÚT',
+    price: '180.000đ',
+    originalPrice: '250.000đ',
+    image: skin05,
+    imageAlt: 'Uốn mi collagen chuẩn Hàn phủ bóng tại Xile Spa',
+    objectPosition: '50% 38%', // True center: specialists in white Ao Dai and precision lash care under the lamp
   },
 ];
 ---
 
-<section id="services" class="py-16 sm:py-20 lg:py-24" aria-label="Dịch vụ Xile Spa">
-  <Container>
+<section id="services" class="py-16 sm:py-20 lg:py-24 bg-spa-cream relative overflow-hidden" aria-label="Dịch vụ và trị liệu Xile Spa">
+  <Container size="wide">
+    <!-- Section Heading — Airy, elegant luxury tone -->
     <SectionHeading
-      badgeText="Dịch Vụ Chuyên Sâu"
-      badgeVariant="sage"
-      title="3 Trụ Cột"
-      titleHighlight="Trị Liệu Xile Spa"
-      subtitle="Mỗi liệu trình được thiết kế riêng biệt, phục vụ một nhu cầu chăm sóc chuyên sâu — từ thư giãn tinh thần đến làm đẹp và phục hồi thể lực."
+      badgeText="Dịch Vụ & Liệu Trình"
+      badgeVariant="bronze"
+      title="Liệu Trình & Dịch Vụ Chủ Lực Tại"
+      titleHighlight="Xile Spa"
+      subtitle="Mỗi liệu trình được thiết kế tinh giản, kết hợp giữa thảo mộc thiên nhiên, phác đồ điều trị da khoa học và phục hồi cơ bắp Sports Therapy."
       align="center"
     />
-  </Container>
 
-  <!-- Service Groups -->
-  {serviceGroups.map((group, groupIdx) => (
-    <div id={`service-${group.id}`} class={`${group.bgClass} py-12 sm:py-16 lg:py-20`}>
-      <Container>
-        <div class={`flex flex-col gap-10 lg:gap-16 ${group.imageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}>
+    <!-- Filter Category Tabs (Clean & Minimalist) -->
+    <div class="flex items-center justify-center flex-wrap gap-2 sm:gap-3 mb-12 sm:mb-16">
+      <button 
+        type="button" 
+        data-filter="all"
+        class="filter-tab active px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 bg-spa-charcoal text-spa-cream shadow-sm"
+      >
+        Tất Cả Liệu Trình
+      </button>
+      <button 
+        type="button" 
+        data-filter="head-spa"
+        class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 bg-[#FCF9F5] hover:bg-spa-beige/80 text-spa-charcoal border border-spa-bronze/20"
+      >
+        Gội Dưỡng Sinh Trung Hoa
+      </button>
+      <button 
+        type="button" 
+        data-filter="skincare"
+        class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 bg-[#FCF9F5] hover:bg-spa-beige/80 text-spa-charcoal border border-spa-bronze/20"
+      >
+        Chăm Da • Peel Da • Uốn Mi
+      </button>
+      <button 
+        type="button" 
+        data-filter="rehab"
+        class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 bg-[#FCF9F5] hover:bg-spa-beige/80 text-spa-charcoal border border-spa-bronze/20"
+      >
+        Sports Therapy Giải Cơ
+      </button>
+    </div>
 
-          <!-- Image Block -->
-          <div class="w-full lg:w-[45%] flex-shrink-0">
-            <div class="relative rounded-3xl overflow-hidden shadow-spa-card border border-spa-bronze/20 group">
-              <!-- Number label -->
-              <div class="absolute top-4 left-4 z-10 w-12 h-12 rounded-full bg-spa-cream/90 backdrop-blur-sm flex items-center justify-center shadow-md">
-                <span class="font-serif text-lg font-semibold text-spa-charcoal">{group.number}</span>
-              </div>
-              <!-- Category pill with Lucide icon -->
-              <div class="absolute top-4 right-4 z-10">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-spa-cream/92 backdrop-blur-sm text-spa-charcoal shadow-sm border border-spa-bronze/20">
-                  {group.id === 'head-spa' && <Leaf className="w-3.5 h-3.5 text-spa-sage" />}
-                  {group.id === 'skincare-peel' && <Sparkles className="w-3.5 h-3.5 text-spa-terracotta" />}
-                  {group.id === 'sports-rehab' && <Activity className="w-3.5 h-3.5 text-spa-bronze" />}
-                  <span>{group.categoryLabel}</span>
+    <!-- 6 Signature Therapy Cards: Refined 3-Column Grid with 1:1 Natural Aspect Ratio -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8 mb-16 sm:mb-20">
+      {signatureServices.map((service) => (
+        <article 
+          data-category={service.category}
+          class="service-card group relative flex flex-col justify-between rounded-3xl bg-[#FCF9F5] border border-spa-bronze/20 shadow-spa-soft hover:shadow-spa-card hover:-translate-y-1.5 transition-all duration-500 overflow-hidden"
+        >
+          <!-- Top: Image Container with 1:1 Aspect Ratio (Shows Complete Overview of Salon & Treatment) -->
+          <div class="card-image-box relative aspect-square sm:aspect-[4/4.2] w-full overflow-hidden bg-spa-beige/40">
+            <Image
+              src={service.image}
+              alt={service.imageAlt}
+              width={700}
+              height={700}
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+              style={`object-position: ${service.objectPosition || '50% 50%'};`}
+              loading="lazy"
+            />
+
+            <!-- Subtle warm overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-spa-charcoal/20 via-transparent to-transparent pointer-events-none"></div>
+
+            <!-- Category floating pill on top-right: Authentic Translucent Frosted Glass with Crystal Rim & Protected High-Contrast Text -->
+            <div class="absolute top-3.5 right-3.5 z-20 pointer-events-none">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-white/80 backdrop-blur-md text-spa-charcoal shadow-[0_2px_12px_rgba(0,0,0,0.12)] border border-white/75 ring-1 ring-spa-bronze/25 group-hover:bg-white/90 group-hover:border-white transition-all duration-300">
+                {service.category === 'head-spa' && <Leaf className="w-3 h-3 text-spa-sage" />}
+                {service.category === 'skincare' && <Sparkles className="w-3 h-3 text-spa-terracotta" />}
+                {service.category === 'rehab' && <Activity className="w-3 h-3 text-spa-bronze" />}
+                <span class="drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">{service.categoryLabel}</span>
+              </span>
+            </div>
+
+            <!-- ORGANIC SOFT WAVY SCALLOP DIVIDER — Đường cong lượn sóng mềm mại hữu cơ che phủ kín hoàn toàn mép đáy ảnh -->
+            <div class="absolute -bottom-[2px] left-0 right-0 w-full overflow-hidden leading-none pointer-events-none z-10">
+              <svg 
+                class="w-full h-9 sm:h-10 text-[#FCF9F5] fill-current" 
+                viewBox="0 0 1200 120" 
+                preserveAspectRatio="none"
+              >
+                <path d="M 0,55 C 180,90 320,90 500,55 C 680,20 820,20 1000,55 C 1080,72 1140,72 1200,55 L 1200,140 L 0,140 Z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Bottom: Card Body (Minimalist, concise, elegant typography as in reference) -->
+          <div class="p-6 sm:p-7 pt-2 flex flex-col flex-1 justify-between text-center bg-[#FCF9F5]">
+            <div>
+              <!-- Service Title in uppercase luxury serif -->
+              <h3 class="font-serif text-lg sm:text-xl font-normal text-spa-charcoal tracking-wide uppercase leading-snug group-hover:text-spa-bronze transition-colors mb-2.5">
+                {service.title}
+              </h3>
+
+              <!-- Short, relaxing, concise description -->
+              <p class="text-xs sm:text-sm text-spa-wood font-light leading-relaxed mb-6 line-clamp-2">
+                {service.description}
+              </p>
+            </div>
+
+            <div>
+              <!-- Metadata Row: DURATION | PRICE (Chuẩn format mẫu sang trọng) -->
+              <div class="border-t border-spa-wood/12 pt-4 flex items-center justify-center gap-3 text-xs tracking-wider uppercase text-spa-charcoal/85 font-medium">
+                <span class="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-spa-bronze/70" />
+                  <span>{service.duration}</span>
+                </span>
+                <span class="text-spa-bronze/40 font-light">|</span>
+                <span class="font-semibold text-spa-bronze text-sm sm:text-base">
+                  {service.price}
                 </span>
               </div>
-              <!-- Image -->
-              <Image
-                src={group.image}
-                alt={group.imageAlt}
-                width={700}
-                height={467}
-                class="w-full h-72 sm:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                loading={groupIdx === 0 ? 'eager' : 'lazy'}
-              />
-              <!-- Subtle overlay gradient -->
-              <div class="absolute inset-0 bg-gradient-to-t from-spa-charcoal/10 via-transparent to-transparent pointer-events-none"></div>
-            </div>
-          </div>
 
-          <!-- Content Block -->
-          <div class="w-full lg:w-[55%] flex flex-col">
-            <!-- Heading -->
-            <div class="mb-6 sm:mb-8">
-              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-spa-wood mb-3">
-                {group.categoryLabel}
-              </p>
-              <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-spa-charcoal font-normal tracking-tight leading-tight mb-4">
-                {group.title}
-                <span class="italic text-spa-bronze block sm:inline sm:ml-2">{group.titleHighlight}</span>
-              </h2>
-              <p class="text-base sm:text-lg text-spa-wood leading-relaxed max-w-xl">
-                {group.subtitle}
-              </p>
-            </div>
-
-            <!-- Service Cards — 2 column on wider screens -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-              {group.services.map((service) => (
-                <div
-                  class="bg-[#FCF9F5]/92 backdrop-blur-sm rounded-2xl p-5 border border-spa-bronze/15 shadow-spa-soft hover:shadow-spa-card hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-3"
+              <!-- Quick Booking Action Button -->
+              <div class="mt-4 pt-3 flex items-center justify-center gap-2">
+                <a
+                  href={CONTACT_CONFIG.ZALO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full py-2 px-4 rounded-full text-xs font-medium text-spa-charcoal bg-spa-beige/60 hover:bg-spa-bronze hover:text-white transition-all duration-300 flex items-center justify-center gap-1.5 group-hover:bg-spa-bronze group-hover:text-white shadow-sm"
+                  aria-label={`Đặt lịch ${service.title} qua Zalo`}
                 >
-                  <!-- Service header -->
-                  <div class="flex items-start justify-between gap-2">
-                    <h3 class="font-serif text-base sm:text-lg text-spa-charcoal font-medium leading-snug flex-1">
-                      {service.title}
-                    </h3>
-                    {service.badge && (
-                      <span class="flex-shrink-0 inline-block text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-spa-bronze/10 text-spa-bronze border border-spa-bronze/20">
-                        {service.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <!-- Tagline -->
-                  <p class="text-sm text-spa-wood leading-snug">{service.tagline}</p>
-
-                  <!-- Benefits list -->
-                  <ul class="flex flex-col gap-1.5 mt-1">
-                    {service.benefits.slice(0, 3).map((benefit) => (
-                      <li class="flex items-start gap-2 text-sm text-spa-charcoal/85">
-                        <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5 text-spa-sage" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <!-- Price & Duration row -->
-                  <div class="flex items-center justify-between pt-2 mt-auto border-t border-spa-wood/10">
-                    <div class="flex items-baseline gap-1.5">
-                      <span class="text-base sm:text-lg font-semibold text-spa-bronze">{service.formattedPrice}</span>
-                      {service.formattedOriginalPrice && (
-                        <span class="text-xs text-spa-muted line-through">{service.formattedOriginalPrice}</span>
-                      )}
-                    </div>
-                    <span class="text-xs text-spa-muted flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-spa-muted" />
-                      {service.formattedDuration}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <!-- CTA row -->
-            <div class="flex flex-col sm:flex-row gap-3">
-              <Button
-                href={group.ctaZalo}
-                target="_blank"
-                variant="primary"
-                size="md"
-                ariaLabel={`Đặt lịch dịch vụ ${group.categoryLabel} qua Zalo`}
-              >
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2C6.477 2 2 6.245 2 11.5c0 2.914 1.374 5.52 3.535 7.265L4.5 22l3.52-1.11A10.476 10.476 0 0012 21c5.523 0 10-4.245 10-9.5S17.523 2 12 2z"/>
-                </svg>
-                Tư Vấn & Đặt Lịch Zalo
-              </Button>
-              <Button
-                href={group.ctaMenu}
-                target="_blank"
-                variant="outline"
-                size="md"
-                ariaLabel={`Xem menu giá dịch vụ ${group.categoryLabel}`}
-              >
-                Xem Bảng Giá Đầy Đủ →
-              </Button>
+                  <span>Đặt Lịch Tư Vấn</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           </div>
-
-        </div>
-      </Container>
+        </article>
+      ))}
     </div>
-  ))}
+
+    <!-- Soft Wavy Promotion & Experience Banner (Lấy cảm hứng từ banner Couple Spa mẫu) -->
+    <div class="relative rounded-3xl overflow-hidden shadow-spa-card bg-gradient-to-br from-[#2D241E] via-[#382C24] to-[#251D18] text-spa-cream text-center p-8 sm:p-12 lg:p-14 border border-spa-bronze/25">
+      <!-- Ambient light effect -->
+      <div class="absolute -top-24 -left-24 w-80 h-80 bg-spa-bronze/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-spa-sage/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <!-- Top pill -->
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs uppercase tracking-widest text-spa-bronze bg-white/10 border border-white/15 mb-4">
+          <Heart className="w-3 h-3 text-spa-bronze" />
+          <span>Ưu Đãi Đặc Quyền Khách Hàng</span>
+        </div>
+
+        <!-- Headline -->
+        <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight leading-tight mb-4 text-spa-cream">
+          Trải Nghiệm Thư Giãn & <br class="hidden sm:inline" />
+          <span class="italic text-spa-bronze font-serif">Tặng Buổi Soi Da Chuyên Sâu</span>
+        </h3>
+
+        <!-- Description -->
+        <p class="text-xs sm:text-sm text-spa-cream/75 font-light leading-relaxed mb-8 max-w-lg mx-auto">
+          Đặt lịch trước qua Facebook Messenger hoặc Zalo để được giữ chỗ phòng trị liệu riêng tư và nhận trọn vẹn sự chăm sóc chu đáo từ đội ngũ chuyên viên Xile Spa.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <a
+            href={CONTACT_CONFIG.FACEBOOK_FANPAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto px-7 py-3 rounded-full bg-spa-bronze hover:bg-spa-bronze/90 text-spa-cream text-xs sm:text-sm font-medium transition-all shadow-md inline-flex items-center justify-center gap-2"
+          >
+            <span>Đặt Lịch Hẹn Ngay</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+          <a
+            href={CONTACT_CONFIG.MENU_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto px-7 py-3 rounded-full bg-white/10 hover:bg-white/15 text-spa-cream text-xs sm:text-sm font-medium border border-white/20 transition-all inline-flex items-center justify-center"
+          >
+            <span>Xem Toàn Bộ Bảng Giá Menu</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Soft Wave Divider on bottom of banner -->
+      <div class="absolute -bottom-[1px] left-0 right-0 w-full overflow-hidden leading-none pointer-events-none opacity-20">
+        <svg class="w-full h-6 text-spa-cream fill-current" viewBox="0 0 1200 30" preserveAspectRatio="none">
+          <path d="M0,15 C200,30 400,0 600,15 C800,30 1000,0 1200,15 L1200,30 L0,30 Z"></path>
+        </svg>
+      </div>
+    </div>
+  </Container>
 </section>
+
+<!-- Client-side Interactive Filter Script (Zero dependency, fast) -->
+<script>
+  function setupFilters() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
+    const cards = document.querySelectorAll<HTMLElement>('.service-card');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const filter = tab.getAttribute('data-filter');
+
+        // Update tab styles
+        tabs.forEach((t) => {
+          t.classList.remove('bg-spa-charcoal', 'text-spa-cream', 'shadow-sm');
+          t.classList.add('bg-[#FCF9F5]', 'text-spa-charcoal', 'border', 'border-spa-bronze/20');
+        });
+        tab.classList.remove('bg-[#FCF9F5]', 'border', 'border-spa-bronze/20');
+        tab.classList.add('bg-spa-charcoal', 'text-spa-cream', 'shadow-sm');
+
+        // Filter cards
+        cards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+          }
+        });
+      });
+    });
+  }
+
+  // Setup on page load
+  setupFilters();
+  document.addEventListener('astro:after-swap', setupFilters);
+</script>
+
+<style>
+  /* Triệt tiêu hoàn toàn hiện tượng lộ viền ảnh / tràn góc bo khi scale trên Chrome & Safari */
+  .service-card {
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .card-image-box {
+    border-top-left-radius: 1.45rem;
+    border-top-right-radius: 1.45rem;
+    overflow: hidden;
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .card-image-box img {
+    will-change: transform;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+</style>

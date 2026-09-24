@@ -8,7 +8,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'goi-dau-thu-gian-thao-duoc',
     category: 'head-spa',
     categoryLabel: 'Gội Đầu Thư Giãn',
-    tagline: 'Xoa dịu mệt mỏi, làm sạch dịu nhẹ nang tóc với 100% thảo mộc đun nấu',
+    tagline: 'Xoa dịu mệt mỏi, làm sạch dịu nhẹ nang tóc với 100% thảo mộc tự nhiên',
     description: 'Quy trình gội đầu thư giãn kết hợp nước thảo mộc ấm (bồ kết, vỏ bưởi, sả chanh), massage đầu nhẹ nhàng và rửa mặt cấp ẩm, giúp phục hồi tinh thần sau những giờ làm việc căng thẳng.',
     durationMinutes: 60,
     formattedDuration: '60 phút',
@@ -21,7 +21,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     isFeatured: true,
     badge: 'Thư Giãn Cốt Lõi',
     benefits: [
-      'Gội sạch sâu nang tóc bằng thảo mộc đun nấu truyền thống',
+      'Gội sạch sâu nang tóc bằng thảo mộc tự nhiên truyền thống',
       'Massage xoa dịu vùng đầu, thái dương và ấn huyệt nhẹ',
       'Đắp mặt nạ cấp ẩm dưa leo/ngọc trai tươi',
       'Sấy tạo kiểu và xịt tinh dầu bưởi kích mọc tóc',
