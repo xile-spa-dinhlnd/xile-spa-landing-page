@@ -170,9 +170,11 @@ const signatureServices = [
               alt={service.imageAlt}
               width={700}
               height={700}
+              format="webp"
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
               style={`object-position: ${service.objectPosition || '50% 50%'};`}
-              loading="lazy"
             />
 
             <!-- Subtle warm overlay gradient -->

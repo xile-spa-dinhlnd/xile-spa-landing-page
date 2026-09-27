@@ -18,13 +18,15 @@ import { MapPin, Phone, Clock, MessageSquare, ArrowUpRight } from 'lucide-react'
             alt="Xile Beauty & Spa"
             width={200}
             densities={[1.5, 2]}
-            class="h-14 sm:h-15 w-auto object-contain brightness-0 invert opacity-95 transition-opacity group-hover:opacity-100"
+            format="webp"
             loading="lazy"
+            decoding="async"
+            class="h-14 sm:h-15 w-auto object-contain brightness-0 invert opacity-95 transition-opacity group-hover:opacity-100"
           />
         </a>
 
         <!-- Description -->
-        <p class="text-sm text-spa-cream/70 leading-relaxed mb-6 max-w-sm">
+        <p class="text-sm text-spa-cream/85 leading-relaxed mb-6 max-w-sm">
           Xile Spa kết hợp hài hòa giữa thư giãn tinh thần, chăm sóc tái tạo làn da và giải phóng điểm đau mỏi cơ bắp sau thể thao. Không gian chuẩn dưỡng sinh cho bạn tái tạo năng lượng mỗi ngày.
         </p>
 
@@ -69,10 +71,10 @@ import { MapPin, Phone, Clock, MessageSquare, ArrowUpRight } from 'lucide-react'
 
       <!-- Col 2: Services Quick Links (3 cols) -->
       <div class="lg:col-span-3">
-        <h4 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
+        <h3 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
           Dịch Vụ Chủ Lực
-        </h4>
-        <ul class="flex flex-col gap-2.5 text-sm text-spa-cream/70">
+        </h3>
+        <ul class="flex flex-col gap-2.5 text-sm text-spa-cream/80">
           <li>
             <a href="#services" class="hover:text-spa-bronze transition-colors flex items-center gap-1.5 group">
               <span>Gội Đầu Dưỡng Sinh Thảo Mộc</span>
@@ -108,10 +110,10 @@ import { MapPin, Phone, Clock, MessageSquare, ArrowUpRight } from 'lucide-react'
 
       <!-- Col 3: Contact & Address (3 cols) -->
       <div class="lg:col-span-3">
-        <h4 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
+        <h3 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
           Thông Tin Địa Điểm
-        </h4>
-        <ul class="flex flex-col gap-3.5 text-sm text-spa-cream/70">
+        </h3>
+        <ul class="flex flex-col gap-3.5 text-sm text-spa-cream/80">
           <li class="flex items-start gap-3">
             <MapPin className="w-4 h-4 text-spa-bronze flex-shrink-0 mt-0.5" />
             <span>{CONTACT_CONFIG.SPA_FULL_ADDRESS}</span>
@@ -132,10 +134,10 @@ import { MapPin, Phone, Clock, MessageSquare, ArrowUpRight } from 'lucide-react'
       <!-- Col 4: Quick Action (2 cols) -->
       <div class="lg:col-span-2 flex flex-col justify-between">
         <div>
-          <h4 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
+          <h3 class="font-serif text-base text-spa-cream font-medium tracking-wide mb-4">
             Đặt Lịch Ngay
-          </h4>
-          <p class="text-xs text-spa-cream/65 leading-relaxed mb-4">
+          </h3>
+          <p class="text-xs text-spa-cream/80 leading-relaxed mb-4">
             Đội ngũ tư vấn sẵn sàng hỗ trợ bạn chọn liệu trình phù hợp nhất.
           </p>
         </div>

@@ -104,11 +104,11 @@
 
 ---
 
-### Phase 5: Tối Ưu SEO & Hiệu Năng Core Web Vitals (95–100 Điểm) (Tiếp theo 🟡)
-- [ ] Xác thực thẻ Schema JSON-LD `BeautySalon` / `LocalBusiness` với đầy đủ danh mục dịch vụ.
-- [ ] Tối ưu hóa ảnh qua `astro:assets` (`<Image />` WebP, `loading="eager"` cho LCP và `loading="lazy"` cho các ảnh phía dưới).
-- [ ] Đo đạc chỉ số: LCP < 1.2s, CLS = 0.00, INP < 50ms trên giả lập mạng di động 4G.
-- [ ] Kiểm tra trợ năng (Accessibility WCAG AA): `aria-label` cho mọi nút icon.
+### Phase 5: Tối Ưu SEO & Hiệu Năng Core Web Vitals (95–100 Điểm) (Hoàn thành 🟢)
+- [x] Xác thực thẻ Schema JSON-LD `BeautySalon` / `LocalBusiness` với đầy đủ danh mục dịch vụ & Google Maps AggregateRating.
+- [x] Tối ưu hóa ảnh qua `astro:assets` (`<Image />` WebP, `loading="eager"` + `fetchpriority="high"` cho LCP và `loading="lazy"` + `decoding="async"` cho các ảnh phía dưới).
+- [x] Đo đạc chỉ số: LCP < 1.2s, CLS = 0.00, INP < 50ms trên giả lập mạng di động 4G (Zero Layout Shift).
+- [x] Kiểm tra trợ năng (Accessibility WCAG AA): `aria-label` cho 100% nút icon và liên kết tương tác.
 
 ---
 
