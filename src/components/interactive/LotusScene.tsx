@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 interface LotusSceneProps {
   /** Path to the GLB model file, relative to public/ */
@@ -12,12 +9,13 @@ interface LotusSceneProps {
 }
 
 /**
- * Premium 3D Lotus Scene — Loads a GLTF/GLB model with:
- * - Studio-quality warm spa lighting
- * - Bloom post-processing for dreamy glow
- * - Smooth auto-rotation (turntable)
- * - Mouse-reactive tilt for interactivity
- * - Golden particle field floating around the scene
+ * Premium Seamless 3D Lotus Sanctuary Scene:
+ * - Floating gracefully on website's warm cream backdrop (no boxy card)
+ * - Stem digitally removed at geometry level (pure blooming lotus petals & stamen)
+ * - Full 360° Drag-to-Rotate interaction with silky inertia damping
+ * - Gentle ambient turntable rotation & floating breathing bob
+ * - Golden zen particle field drifting peacefully
+ * - Studio spa daylighting optimized for light backgrounds
  */
 export default function LotusScene({
   modelPath = '/models/lotus.glb',
@@ -27,6 +25,8 @@ export default function LotusScene({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isGrabbing, setIsGrabbing] = useState(false);
 
   const setupScene = useCallback(() => {
     const container = containerRef.current;
@@ -39,12 +39,12 @@ export default function LotusScene({
     // ─── 1. Scene ───
     const scene = new THREE.Scene();
 
-    // ─── 2. Camera ───
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(0, 2.4, 6.2);
-    camera.lookAt(0, 0.2, 0);
+    // ─── 2. Camera (gentle ~18° downward angle to admire petal crown) ───
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
+    camera.position.set(0, 1.8, 5.2);
+    camera.lookAt(0, 0.05, 0);
 
-    // ─── 3. Renderer ───
+    // ─── 3. Transparent WebGL Renderer ───
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -54,96 +54,66 @@ export default function LotusScene({
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.35;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    // ─── 3b. Warm Studio Spa Background Texture ───
-    const bgCanvas = document.createElement('canvas');
-    bgCanvas.width = 512;
-    bgCanvas.height = 640;
-    const bgCtx = bgCanvas.getContext('2d');
-    let bgTexture: THREE.CanvasTexture | null = null;
-    if (bgCtx) {
-      // Warm glowing spa backdrop with candle halo behind the lotus
-      const grad = bgCtx.createRadialGradient(256, 230, 25, 256, 280, 360);
-      grad.addColorStop(0, '#B38B68');   // Luminous warm golden-champagne halo directly behind flower
-      grad.addColorStop(0.25, '#8D664A'); // Warm amber-terracotta tone
-      grad.addColorStop(0.55, '#63442F'); // Rich warm spa wood tone
-      grad.addColorStop(0.82, '#422B1D'); // Deep espresso
-      grad.addColorStop(1, '#2C1A10');    // Warm outer border tone
-      bgCtx.fillStyle = grad;
-      bgCtx.fillRect(0, 0, 512, 640);
+    // ─── 4. Spa Studio Lighting (Tailored for Warm Cream Backdrops) ───
 
-      // Subtle candlelight warmth orb on upper right
-      const candleGlow = bgCtx.createRadialGradient(380, 130, 5, 380, 130, 140);
-      candleGlow.addColorStop(0, 'rgba(255, 225, 175, 0.22)');
-      candleGlow.addColorStop(1, 'rgba(255, 225, 175, 0)');
-      bgCtx.fillStyle = candleGlow;
-      bgCtx.fillRect(0, 0, 512, 640);
-
-      bgTexture = new THREE.CanvasTexture(bgCanvas);
-      bgTexture.colorSpace = THREE.SRGBColorSpace;
-      scene.background = bgTexture;
-    }
-
-    // ─── 4. Spa Studio Lighting System ───
-
-    // Warm ambient fill (soft bounced light simulating warm spa walls)
-    const ambientLight = new THREE.AmbientLight(0xffede0, 1.9);
+    // Warm daylight ambient fill
+    const ambientLight = new THREE.AmbientLight(0xfff7ee, 2.2);
     scene.add(ambientLight);
 
-    // Main key light (warm sunlight from upper-front-right)
-    const keyLight = new THREE.DirectionalLight(0xfff6ee, 2.9);
-    keyLight.position.set(3, 6, 4);
+    // Key light (soft warm sun from upper-right)
+    const keyLight = new THREE.DirectionalLight(0xfff8f0, 2.6);
+    keyLight.position.set(3, 5, 4);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(1024, 1024);
     keyLight.shadow.bias = -0.0003;
     keyLight.shadow.camera.near = 0.5;
     keyLight.shadow.camera.far = 20;
-    keyLight.shadow.camera.left = -5;
-    keyLight.shadow.camera.right = 5;
-    keyLight.shadow.camera.top = 5;
-    keyLight.shadow.camera.bottom = -5;
     scene.add(keyLight);
 
-    // Warm gold fill from left (soft candlelight warmth)
-    const fillLight = new THREE.DirectionalLight(0xf7d9b2, 1.9);
-    fillLight.position.set(-4, 3, 2);
+    // Fill light (warm champagne fill from left)
+    const fillLight = new THREE.DirectionalLight(0xf7dfc8, 1.6);
+    fillLight.position.set(-3.5, 3, 2);
     scene.add(fillLight);
 
-    // Soft rim light from behind (defines petal silhouettes against warm backdrop)
-    const rimLight = new THREE.DirectionalLight(0xffecd2, 1.5);
-    rimLight.position.set(0, 2, -4);
+    // Rim light (defining petal silhouette edges)
+    const rimLight = new THREE.DirectionalLight(0xffeedd, 1.8);
+    rimLight.position.set(0, 2.5, -4);
     scene.add(rimLight);
 
-    // Overhead spotlight for lotus core glow (softened to prevent overexposure)
-    const spotLight = new THREE.SpotLight(0xffeed6, 2.2, 12, Math.PI / 5, 0.6, 1.5);
-    spotLight.position.set(0, 5, 1);
-    spotLight.target.position.set(0, 0.2, 0);
+    // Overhead spotlight for lotus stamen radiance
+    const spotLight = new THREE.SpotLight(0xfffaec, 2.2, 12, Math.PI / 4, 0.5, 1.5);
+    spotLight.position.set(0, 4.5, 1);
+    spotLight.target.position.set(0, 0.1, 0);
     spotLight.castShadow = true;
     scene.add(spotLight);
     scene.add(spotLight.target);
 
-    // Interactive mouse-following light
-    const mouseLight = new THREE.PointLight(0xffe0be, 1.4, 10);
-    mouseLight.position.set(0, 3, 4);
+    // Under-bounce light (simulating warm light bounced off the cream table/floor)
+    const underLight = new THREE.DirectionalLight(0xedd6b8, 1.2);
+    underLight.position.set(0, -2, 2);
+    scene.add(underLight);
+
+    // Interactive mouse-following candlelight
+    const mouseLight = new THREE.PointLight(0xffe0be, 1.2, 8);
+    mouseLight.position.set(0, 2, 3.5);
     scene.add(mouseLight);
 
-    // ─── 5. Environment Map for Reflections ───
+    // ─── 5. Environment Map for Silky Highlights ───
     const pmremGenerator = new THREE.PMREMGenerator(renderer);
     pmremGenerator.compileEquirectangularShader();
 
-    // Create warm gradient environment
     const envScene = new THREE.Scene();
     const envGeo = new THREE.SphereGeometry(10, 32, 32);
     const envMat = new THREE.MeshBasicMaterial({
       side: THREE.BackSide,
-      color: 0x553822,
+      color: 0x6e523e,
     });
     envScene.add(new THREE.Mesh(envGeo, envMat));
-    // Warm light sources in env
     const envLight1 = new THREE.PointLight(0xfff0d4, 4, 20);
     envLight1.position.set(3, 5, 3);
     envScene.add(envLight1);
@@ -154,29 +124,15 @@ export default function LotusScene({
     const envMap = pmremGenerator.fromScene(envScene, 0.04).texture;
     scene.environment = envMap;
 
-    // Cleanup env resources
     envGeo.dispose();
     envMat.dispose();
     pmremGenerator.dispose();
 
-    // ─── 6. Post-processing (Bloom for Dreamy Glow) ───
-    const composer = new EffectComposer(renderer);
-    const renderPass = new RenderPass(scene, camera);
-    composer.addPass(renderPass);
-
-    const bloomPass = new UnrealBloomPass(
-      new THREE.Vector2(width, height),
-      0.28,   // Subtle, refined dreamy glow
-      0.5,    // Radius
-      0.75    // Threshold (avoids blowing out inner petal texture)
-    );
-    composer.addPass(bloomPass);
-
-    // ─── 7. Root Group for Model (auto-rotation applied here) ───
+    // ─── 6. Root Group for Model (Rotation & Floating Bob) ───
     const rootGroup = new THREE.Group();
     scene.add(rootGroup);
 
-    // ─── 8. Load the GLTF/GLB Model ───
+    // ─── 7. Load GLTF & Remove Plastic Stem at Geometry Level ───
     const loader = new GLTFLoader();
 
     loader.load(
@@ -184,33 +140,55 @@ export default function LotusScene({
       (gltf) => {
         const model = gltf.scene;
 
-        // Auto-center and scale the model with elegant margins (targetSize 2.2 instead of 3.5)
-        const box = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const targetSize = 2.2; // Perfectly proportioned, no clipping
-        const scale = targetSize / maxDim;
-
-        model.scale.setScalar(scale);
-        // Center horizontally and depth-wise, shift slightly upwards (+0.25) so bottom info card doesn't cover petals
-        model.position.x = -center.x * scale;
-        model.position.y = -center.y * scale + 0.25;
-        model.position.z = -center.z * scale;
-
-        // Enhance materials for premium look
+        // Traverse mesh and filter out stem & calyx triangles completely
         model.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
+          if (child instanceof THREE.Mesh && child.geometry) {
+            const geo = child.geometry;
+            const pos = geo.attributes.position;
+            const index = geo.index;
+            if (index && pos) {
+              const oldIndices = index.array;
+              const newIndices: number[] = [];
+              for (let i = 0; i < oldIndices.length; i += 3) {
+                const a = oldIndices[i];
+                const b = oldIndices[i + 1];
+                const c = oldIndices[i + 2];
+                const z0 = pos.getZ(a);
+                const z1 = pos.getZ(b);
+                const z2 = pos.getZ(c);
+                // Completely eliminate all stem & calyx comb triangles
+                // (kept only if all 3 vertices are strictly within petal crown: z <= -51.0)
+                if (Math.max(z0, z1, z2) <= -51.0) {
+                  newIndices.push(a, b, c);
+                }
+              }
+              geo.setIndex(newIndices);
+              geo.computeVertexNormals();
+            }
+
             child.castShadow = true;
             child.receiveShadow = true;
 
-            // Upgrade materials for better visual quality
             if (child.material instanceof THREE.MeshStandardMaterial) {
-              child.material.envMapIntensity = 0.9;
+              child.material.envMapIntensity = 1.0;
+              child.material.roughness = 0.38;
               child.material.needsUpdate = true;
             }
           }
         });
+
+        // Auto-center and scale pure lotus flower (balanced size: 2.1)
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const targetSize = 2.1; // Balanced, graceful proportions
+        const scale = targetSize / maxDim;
+
+        model.scale.setScalar(scale);
+        model.position.x = -center.x * scale;
+        model.position.y = -center.y * scale + 0.05;
+        model.position.z = -center.z * scale;
 
         rootGroup.add(model);
         setIsLoading(false);
@@ -223,26 +201,26 @@ export default function LotusScene({
       }
     );
 
-    // ─── 9. Floating Golden Particles ───
-    const particleCount = 40;
+    // ─── 8. Floating Golden Zen Particles ───
+    const particleCount = 35;
     const particlePositions = new Float32Array(particleCount * 3);
     const particleSpeeds = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
-      particlePositions[i * 3] = (Math.random() - 0.5) * 8;
-      particlePositions[i * 3 + 1] = Math.random() * 5 - 1;
-      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
-      particleSpeeds[i] = 0.2 + Math.random() * 0.5;
+      particlePositions[i * 3] = (Math.random() - 0.5) * 6;
+      particlePositions[i * 3 + 1] = Math.random() * 4 - 1;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 6;
+      particleSpeeds[i] = 0.2 + Math.random() * 0.4;
     }
 
     const particleGeo = new THREE.BufferGeometry();
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      color: 0xCFA13D,
-      size: 0.04,
+      color: 0xC4924A,
+      size: 0.038,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.55,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -250,108 +228,147 @@ export default function LotusScene({
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // ─── 10. Mouse Interaction ───
-    let targetTiltX = 0;
-    let targetTiltY = 0;
-    let currentTiltX = 0;
-    let currentTiltY = 0;
+    // ─── 9. 360° Drag-to-Rotate Interaction with Inertia ───
+    let isDragging = false;
+    let prevPointerX = 0;
+    let prevPointerY = 0;
+    let velX = 0; // vertical rotation velocity
+    let velY = 0; // horizontal rotation velocity
+    let currentRotY = 0.3; // Initial 3/4 angle
+    // Default tilt angle ~27.5° (0.48 rad) matching user's favored perspective in Image 2
+    const DEFAULT_TILT_X = 0.48;
+    let currentRotX = DEFAULT_TILT_X;
+    let autoRotateActive = true;
 
-    const onPointerMove = (e: MouseEvent) => {
+    const onPointerDown = (e: PointerEvent) => {
+      isDragging = true;
+      setIsGrabbing(true);
+      setHasInteracted(true);
+      autoRotateActive = false;
+      prevPointerX = e.clientX;
+      prevPointerY = e.clientY;
+      velX = 0;
+      velY = 0;
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
       const rect = container.getBoundingClientRect();
       const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const normY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-      targetTiltY = normX * 8; // ±8 degrees horizontal
-      targetTiltX = normY * 5; // ±5 degrees vertical
+      // Mouse-following subtle candlelight
+      mouseLight.position.x = normX * 3.5;
+      mouseLight.position.y = normY * 1.5 + 2.0;
 
-      // Move the interactive light
-      mouseLight.position.x = normX * 4;
-      mouseLight.position.y = normY * 2 + 3;
+      if (!isDragging) return;
+
+      const deltaX = e.clientX - prevPointerX;
+      const deltaY = e.clientY - prevPointerY;
+      prevPointerX = e.clientX;
+      prevPointerY = e.clientY;
+
+      // Smooth, responsive turntable control
+      velY = deltaX * 0.007;
+      velX = deltaY * 0.004;
+
+      currentRotY += velY;
+      // Clamp vertical tilt between 0.15 and 0.72 rad (always showcases lotus heart & stamen)
+      currentRotX = Math.max(0.15, Math.min(0.72, currentRotX + velX));
     };
 
-    const onPointerLeave = () => {
-      targetTiltX = 0;
-      targetTiltY = 0;
+    const onPointerUp = () => {
+      if (isDragging) {
+        isDragging = false;
+        setIsGrabbing(false);
+      }
     };
 
-    container.addEventListener('mousemove', onPointerMove, { passive: true });
-    container.addEventListener('mouseleave', onPointerLeave);
+    container.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
 
-    // ─── 11. Resize Handler ───
+    // ─── 10. Resize Handler ───
     const handleResize = () => {
       const w = container.clientWidth;
       const h = container.clientHeight;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
-      composer.setSize(w, h);
-      bloomPass.resolution.set(w, h);
     };
 
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(container);
 
-    // ─── 12. Animation Loop ───
+    // ─── 11. Animation Loop ───
     let animationId: number;
     const clock = new THREE.Clock();
 
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
-      const delta = clock.getDelta();
 
-      // Auto-rotation (smooth turntable)
-      rootGroup.rotation.y += 0.003; // Very gentle continuous rotation
+      // Inertia & Auto-rotation Physics
+      if (isDragging) {
+        // Direct tracking handled in onPointerMove
+      } else {
+        // Inertia damping
+        velY *= 0.94;
+        velX *= 0.94;
+        currentRotY += velY;
+        currentRotX = Math.max(0.15, Math.min(0.72, currentRotX + velX));
 
-      // Mouse tilt interpolation (smooth follow)
-      currentTiltX += (targetTiltX - currentTiltX) * 0.04;
-      currentTiltY += (targetTiltY - currentTiltY) * 0.04;
+        // When drag velocity dies down, resume slow graceful auto-rotation
+        if (Math.abs(velY) < 0.0004 && Math.abs(velX) < 0.0004) {
+          autoRotateActive = true;
+        }
 
-      // Apply combined rotation
-      rootGroup.rotation.x = THREE.MathUtils.degToRad(currentTiltX);
-      // Y rotation = auto-rotation + mouse tilt
-      rootGroup.rotation.y += THREE.MathUtils.degToRad(currentTiltY) * 0.01;
+        if (autoRotateActive) {
+          currentRotY += 0.0018; // Very tranquil continuous turntable
+          // Gently return vertical tilt to favored Image 2 perspective (0.48 rad)
+          currentRotX += (DEFAULT_TILT_X - currentRotX) * 0.02;
+        }
+      }
 
-      // Gentle floating bob
-      rootGroup.position.y = Math.sin(elapsed * 0.8) * 0.08;
+      rootGroup.rotation.y = currentRotY;
+      rootGroup.rotation.x = currentRotX;
+
+      // Gentle floating breathing bob
+      rootGroup.position.y = 0.08 + Math.sin(elapsed * 0.8) * 0.04;
 
       // Animate particles (slow upward drift)
       const positions = particleGeo.attributes.position.array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
-        positions[i * 3 + 1] += particleSpeeds[i] * 0.005;
-        // Gentle horizontal sway
-        positions[i * 3] += Math.sin(elapsed + i) * 0.001;
+        positions[i * 3 + 1] += particleSpeeds[i] * 0.004;
+        positions[i * 3] += Math.sin(elapsed + i) * 0.0008;
 
-        // Reset particles that drift too high
-        if (positions[i * 3 + 1] > 5) {
+        if (positions[i * 3 + 1] > 4) {
           positions[i * 3 + 1] = -1;
-          positions[i * 3] = (Math.random() - 0.5) * 8;
-          positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+          positions[i * 3] = (Math.random() - 0.5) * 6;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
         }
       }
       particleGeo.attributes.position.needsUpdate = true;
+      particleMat.opacity = 0.4 + Math.sin(elapsed * 1.5) * 0.15;
 
-      // Pulsing particle opacity
-      particleMat.opacity = 0.4 + Math.sin(elapsed * 1.5) * 0.2;
-
-      // Render with bloom post-processing
-      composer.render();
+      // Render directly with transparent background
+      renderer.render(scene, camera);
     };
 
     animate();
 
-    // ─── 13. Cleanup ───
+    // ─── 12. Cleanup ───
     return () => {
       cancelAnimationFrame(animationId);
       resizeObserver.disconnect();
-      container.removeEventListener('mousemove', onPointerMove);
-      container.removeEventListener('mouseleave', onPointerLeave);
+      container.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
       renderer.dispose();
-      composer.dispose();
       particleGeo.dispose();
       particleMat.dispose();
       envMap.dispose();
-      bgTexture?.dispose();
     };
   }, [modelPath]);
 
@@ -365,28 +382,46 @@ export default function LotusScene({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full select-none overflow-hidden ${className}`}
+      className={`relative w-full select-none overflow-hidden touch-none ${
+        isGrabbing ? 'cursor-grabbing' : 'cursor-grab'
+      } ${className}`}
       style={{ aspectRatio: '4/5' }}
     >
-      {/* Three.js Canvas */}
-      <canvas ref={canvasRef} className="w-full h-full block" />
+      {/* Three.js Transparent Canvas */}
+      <canvas ref={canvasRef} className="w-full h-full block relative z-10" />
 
-      {/* Subtle Warm Ambiance Vignette (gentle, does not darken center) */}
+      {/* Interactive 360° Drag Cue Badge (fades out gracefully after user touches/drags) */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 38%, transparent 55%, rgba(45, 28, 18, 0.15) 80%, rgba(30, 18, 11, 0.35) 100%)',
-        }}
-      />
+        className={`absolute top-4 left-4 z-20 pointer-events-none transition-all duration-700 ${
+          hasInteracted ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'
+        }`}
+      >
+        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium bg-white/85 backdrop-blur-md text-spa-charcoal shadow-md border border-spa-bronze/30">
+          <svg
+            className="w-3.5 h-3.5 text-spa-bronze flex-shrink-0 animate-spin"
+            style={{ animationDuration: '6s' }}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
+          </svg>
+          <span>Kéo xoay 360°</span>
+        </span>
+      </div>
 
       {/* Loading State */}
       {isLoading && !loadError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#2C1D14]/85 backdrop-blur-sm z-10">
+        <div className="absolute inset-0 flex items-center justify-center bg-spa-cream/60 backdrop-blur-sm z-20">
           <div className="flex flex-col items-center gap-3">
             <div className="w-10 h-10 rounded-full border-2 border-spa-bronze/30 border-t-spa-bronze animate-spin" />
-            <span className="text-spa-cream/80 text-xs font-sans tracking-wide">
-              Đang tải mô hình 3D...
+            <span className="text-spa-charcoal/80 text-xs font-sans tracking-wide">
+              Đang tải hoa sen 3D...
             </span>
           </div>
         </div>
@@ -394,12 +429,12 @@ export default function LotusScene({
 
       {/* Error State */}
       {loadError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#1C1510]/90 z-10">
+        <div className="absolute inset-0 flex items-center justify-center bg-spa-cream/80 z-20">
           <div className="text-center px-6">
-            <p className="text-spa-cream/80 text-sm font-sans mb-2">
+            <p className="text-spa-charcoal/80 text-sm font-sans mb-2">
               Không thể tải mô hình 3D
             </p>
-            <p className="text-spa-cream/50 text-xs font-sans">
+            <p className="text-spa-wood text-xs font-sans">
               Vui lòng đặt file <code className="text-spa-bronze">lotus.glb</code> vào thư mục <code className="text-spa-bronze">public/models/</code>
             </p>
           </div>
