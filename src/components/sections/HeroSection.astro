@@ -1,10 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import { CONTACT_CONFIG } from '@/data/contact';
 import Container from '@/components/common/Container.astro';
 import Badge from '@/components/common/Badge.astro';
 import Button from '@/components/common/Button.astro';
-import heroImage from '@/assets/hero-spa.jpg';
+import LotusScene from '@/components/interactive/LotusScene';
 import { Star, MapPin, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
 ---
 
@@ -33,9 +32,9 @@ import { Star, MapPin, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-r
           <span class="italic text-spa-bronze font-serif">Tái Sinh Năng Lượng</span> Tự Nhiên
         </h1>
 
-        <!-- Subtitle định vị rõ các giá trị cốt lõi -->
+        <!-- Subtitle định vị rõ các giá trị cốt lõi — Tinh gọn, sang trọng & súc tích -->
         <p class="text-base sm:text-lg text-spa-wood font-normal leading-relaxed max-w-2xl mb-8 sm:mb-10">
-          Khám phá không gian chăm sóc toàn diện tại <strong>Xile Spa</strong>: Gội đầu dưỡng sinh Trung Hoa trị liệu cổ vai gáy, phác đồ chăm da mụn nám sẹo rỗ & peel da tái sinh, cùng kỹ thuật Sports Therapy phục hồi thể lực đỉnh cao.
+          Không gian chăm sóc & trị liệu toàn diện tại <strong>Xile Spa</strong>: Gội dưỡng sinh xoa dịu thân tâm, chăm da phục hồi chuyên sâu và liệu pháp Sports Therapy giải cơ tầng sâu.
         </p>
 
         <!-- CTA Buttons Group -->
@@ -97,59 +96,48 @@ import { Star, MapPin, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-r
 
       </div>
 
-      <!-- Right Column: Framed Luxury Hero Visual (5 cols) -->
+      <!-- Right Column: 3D Lotus Scene (5 cols) -->
       <div class="lg:col-span-5 relative">
         <div class="relative mx-auto max-w-md lg:max-w-none">
           
-          <!-- Decorative ambient shadow frame -->
-          <div class="absolute -inset-2 rounded-[34px] bg-gradient-to-tr from-spa-bronze/20 via-spa-sage/10 to-transparent blur-lg opacity-70 pointer-events-none"></div>
+          <!-- Outer breathing aura glow -->
+          <div class="hero-lotus-aura" aria-hidden="true"></div>
 
-          <!-- Main Framed Image Container -->
-          <div class="relative rounded-3xl sm:rounded-[32px] overflow-hidden shadow-spa-card border border-spa-bronze/25 bg-spa-cream aspect-[4/5] sm:aspect-[4/5] group">
-            <Image 
-              src={heroImage}
-              alt="Không gian phòng trị liệu yên tĩnh và thư giãn tại Xile Spa"
-              width={900}
-              height={1125}
-              format="webp"
-              quality={90}
-              loading="eager"
-              fetchpriority="high"
-              class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+          <!-- 3D Lotus Scene (React Island — only loads on client) -->
+          <div class="hero-lotus-frame">
+            <LotusScene 
+              client:visible
+              modelPath="/models/lotus.glb" 
+              className="rounded-3xl sm:rounded-[34px]"
             />
-
-            <!-- Subtle gradient overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-spa-charcoal/65 via-transparent to-transparent pointer-events-none"></div>
-
-            <!-- Top-right chip: Thảo mộc tự nhiên -->
-            <div class="absolute top-4 right-4 z-10">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-spa-cream/92 backdrop-blur-md text-spa-charcoal shadow-sm border border-spa-bronze/20">
-                <span class="w-2 h-2 rounded-full bg-spa-sage"></span>
+            
+            <!-- Overlay: Info badges floating above the 3D scene -->
+            <div class="absolute top-4 right-4 z-20 pointer-events-none">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-[#2D1D14]/85 backdrop-blur-md text-spa-cream shadow-md border border-spa-bronze/35">
+                <span class="w-2 h-2 rounded-full bg-spa-sage animate-pulse"></span>
                 <span>Bồ Kết & Thảo Mộc Tự Nhiên</span>
               </span>
             </div>
 
-            <!-- Floating Info Card at Bottom of Image -->
-            <div class="absolute bottom-4 left-4 right-4 z-10 bg-spa-cream/95 backdrop-blur-md p-4 sm:p-4.5 rounded-2xl border border-spa-bronze/20 shadow-spa-card">
+            <div class="absolute bottom-4 left-4 right-4 z-20 bg-[#2D1D14]/90 backdrop-blur-md p-4 rounded-2xl border border-spa-bronze/35 shadow-spa-card text-spa-cream pointer-events-none">
               <div class="flex items-start justify-between gap-3">
                 <div>
-                  <p class="font-serif text-sm sm:text-base font-semibold text-spa-charcoal leading-snug">
+                  <p class="font-serif text-sm sm:text-base font-semibold text-spa-cream leading-snug">
                     Xile Beauty & Spa
                   </p>
-                  <p class="text-[11px] sm:text-xs text-spa-wood flex items-center gap-1 mt-1">
+                  <p class="text-[11px] sm:text-xs text-spa-cream/70 flex items-center gap-1 mt-1">
                     <MapPin className="w-3 h-3 text-spa-bronze flex-shrink-0" />
                     <span>67 Đ. Hưng Phú, Quận 8, TP.HCM</span>
                   </p>
                 </div>
                 <div class="text-right flex-shrink-0">
-                  <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-spa-bronze px-2 py-0.5 rounded-full bg-spa-bronze/10">
+                  <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-spa-bronze px-2.5 py-1 rounded-full bg-spa-bronze/20 border border-spa-bronze/30">
                     <Clock className="w-3 h-3" />
                     <span>09:00 - 21:00</span>
                   </span>
                 </div>
               </div>
             </div>
-
           </div>
 
         </div>
@@ -158,3 +146,52 @@ import { Star, MapPin, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-r
     </div>
   </Container>
 </section>
+
+<style>
+  /* ===== OUTER BREATHING AURA ===== */
+  .hero-lotus-aura {
+    position: absolute;
+    inset: -25px;
+    border-radius: 40px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(189, 139, 83, 0.35) 0%,
+      rgba(189, 139, 83, 0.12) 50%,
+      transparent 75%
+    );
+    filter: blur(28px);
+    pointer-events: none;
+    animation: aura-breathe 5s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes aura-breathe {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  /* ===== 3D SCENE FRAME ===== */
+  .hero-lotus-frame {
+    position: relative;
+    z-index: 1;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 
+      0 24px 70px -15px rgba(189, 139, 83, 0.28),
+      0 0 0 1px rgba(189, 139, 83, 0.35);
+    background: radial-gradient(ellipse at 50% 38%, #5A3F2C 0%, #3F291C 50%, #26170E 100%);
+  }
+
+  @media (min-width: 640px) {
+    .hero-lotus-frame {
+      border-radius: 34px;
+    }
+  }
+
+  /* ===== REDUCED MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-lotus-aura {
+      animation: none;
+    }
+  }
+</style>
