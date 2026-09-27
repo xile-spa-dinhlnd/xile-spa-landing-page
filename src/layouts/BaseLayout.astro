@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import { CONTACT_CONFIG } from '@/data/contact';
+import SmoothScroll from '@/components/common/SmoothScroll.astro';
 
 export interface Props {
   title?: string;
@@ -81,6 +82,8 @@ const schemaData = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
   <body class="bg-spa-cream text-spa-charcoal min-h-screen selection:bg-spa-bronze/20 selection:text-spa-bronze">
+    <!-- Smooth Momentum Scrolling (Lenis) & Top Luxury Gold Progress Indicator -->
+    <SmoothScroll />
     <slot />
   </body>
 </html>
