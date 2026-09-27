@@ -5,7 +5,8 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://xilespa.vn',
+  site: 'https://xile-spa-dinhlnd.github.io',
+  base: '/xile-spa-landing-page',
   integrations: [
     react(),
     tailwind({

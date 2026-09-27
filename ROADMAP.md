@@ -112,10 +112,11 @@
 
 ---
 
-### Phase 6: Rà Soát Toàn Diện & Chuẩn Bị Xuất Bản
-- [ ] Kiểm tra responsive trên các kích thước màn hình phổ biến: Mobile (375px - 430px), Tablet (768px - 1024px), Desktop (1280px+).
-- [ ] Kiểm tra toàn bộ luồng click: Zalo, Messenger, Hotline gọi điện thoại, Link Menu.
-- [ ] Hướng dẫn thay thế ảnh thật và cập nhật link Fanpage chính thức khi khách hàng bàn giao.
+### Phase 6: Rà Soát Toàn Diện & Chuẩn Bị Xuất Bản (Hoàn thành 🟢)
+- [x] Kiểm tra responsive trên các kích thước màn hình phổ biến: Mobile (375px - 430px), Tablet (768px - 1024px), Desktop (1280px+).
+- [x] Kiểm tra toàn bộ luồng click: Zalo, Messenger, Hotline gọi điện thoại, Link Menu, Google Maps.
+- [x] Hướng dẫn thay thế ảnh thật và cập nhật link Fanpage chính thức khi khách hàng bàn giao.
+- [x] Tạo file [public/robots.txt](file:///Users/dinhlu2482/Desktop/XileSpa/xile-spa-landing-page/public/robots.txt) cho công cụ tìm kiếm và SEO crawler.
 
 ---
 
