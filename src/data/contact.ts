@@ -25,7 +25,7 @@ export const CONTACT_CONFIG = {
   SPA_ADDRESS: "67 Đ. Hưng Phú, Quận 8, TP. Hồ Chí Minh",
   SPA_FULL_ADDRESS: "67 Đ. Hưng Phú, Quận 8, Hồ Chí Minh 700000, Việt Nam",
   GOOGLE_MAPS_EMBED_URL:
-    "https://www.google.com/maps?q=67+%C4%90.+H%C6%B0ng+Ph%C3%BA,+Qu%E1%BA%ADn+8,+H%E1%BB%93+Ch%C3%AD+Minh&output=embed",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7839.583246347571!2d106.6811055!3d10.750536799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f0078be499f%3A0x66b1e343122c3138!2sXiLe%20Beauty%20%26%20Spa!5e0!3m2!1svi!2s!4v1790334145396!5m2!1svi!2s",
   GOOGLE_MAPS_DIRECTIONS_URL: "https://maps.app.goo.gl/XafAJZNHmoeHtmjk6",
 
   // === MENU DỊCH VỤ ĐÃ TRIỂN KHAI ===

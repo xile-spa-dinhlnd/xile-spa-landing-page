@@ -10,100 +10,99 @@ import { Leaf, Sparkles, Activity, Clock, ArrowRight, Heart } from 'lucide-react
 import headWash01 from '@/assets/head-spa-pics/hair-wash-01.jpg';
 import headWash02 from '@/assets/head-spa-pics/hair-wash-02.jpg';
 import skin01 from '@/assets/skincare-pics/skin-01.jpg';
-import skin03 from '@/assets/skincare-pics/skin-03.jpg';
+import skin07 from '@/assets/skincare-pics/skin-07.jpg';
 import rehab01 from '@/assets/sport-rehab-pics/rehab-01.jpg';
-import skin05 from '@/assets/skincare-pics/skin-05.jpg';
+import rehabSport from '@/assets/sport-rehab-pics/service-sports-rehab.jpg';
 
 const signatureServices = [
+  // ==================== NHÓM 1: GỘI ĐẦU DƯỠNG SINH ====================
   {
     id: 'head-spa-relax',
     category: 'head-spa',
-    categoryLabel: 'Dưỡng Sinh Thảo Mộc',
+    categoryLabel: 'Gội Dưỡng Sinh',
     badgeVariant: 'sage',
-    title: 'Gội Dưỡng Sinh Thảo Dược Tự Nhiên',
+    title: 'Gội Dưỡng Sinh Tĩnh Dưỡng',
     description:
-      'Làm sạch dịu nhẹ nang tóc với 100% thảo mộc tự nhiên, kết hợp massage đầu thư giãn và đắp mặt nạ cấp ẩm giúp phục hồi tinh thần.',
+      'Quy trình 9 bước khai thông kinh lạc: massage mặt nâng cơ, massage cổ vai gáy giải mỏi, gội thảo dược ấm, vòm tuần hoàn và kéo khăn nóng.',
     duration: '60 PHÚT',
-    price: '250.000đ',
-    originalPrice: '300.000đ',
+    price: '179.000đ',
     image: headWash01,
-    imageAlt: 'Gội dưỡng sinh thảo dược tự nhiên tại Xile Spa',
-    objectPosition: '50% 45%', // True center: shows specialists, massage hands, customer face & bamboo ambiance
+    imageAlt: 'Gội dưỡng sinh Tĩnh Dưỡng 179k tại Xile Spa',
+    objectPosition: '50% 45%',
   },
   {
-    id: 'head-spa-premium',
+    id: 'head-spa-signature',
     category: 'head-spa',
-    categoryLabel: 'Dưỡng Sinh Trung Hoa',
+    categoryLabel: 'Dưỡng Sinh Hoàng Gia',
     badgeVariant: 'sage',
-    title: 'Dưỡng Sinh Trung Hoa & Trị Liệu Cổ Vai Gáy',
+    title: 'Gội Dưỡng Sinh Signature Xile',
     description:
-      'Đả thông kinh lạc vùng đầu - cổ vai gáy với vòm nước thảo dược tuần hoàn ấm áp, xoa dịu đau đầu và mang lại giấc ngủ sâu tự nhiên.',
-    duration: '75 PHÚT',
-    price: '350.000đ',
-    originalPrice: '420.000đ',
+      'Trải nghiệm 16 bước hoàng gia đỉnh cao: chăm da, hút nhờn, cấy tinh chất trắng da, massage đá ngọc & đá nóng cổ vai gáy, ráy tai, xông tai nến, vòm tuần hoàn.',
+    duration: '90 PHÚT',
+    price: '450.000đ',
     image: headWash02,
-    imageAlt: 'Gội đầu dưỡng sinh Trung Hoa trị liệu cổ vai gáy tại Xile Spa',
-    objectPosition: '50% 42%', // True center: shows therapist smile, head acupressure, and resting client
+    imageAlt: 'Gội dưỡng sinh Signature Xile 450k tại Xile Spa',
+    objectPosition: '50% 42%',
   },
+
+  // ==================== NHÓM 2: CHĂM SÓC DA & PEEL TÁI TẠO ====================
   {
     id: 'skincare-deep',
     category: 'skincare',
     categoryLabel: 'Chăm Da Chuẩn Y Khoa',
     badgeVariant: 'terracotta',
-    title: 'Chăm Sóc Da Chuyên Sâu — Mụn, Nám & Sẹo Rỗ',
+    title: 'Chăm Sóc Da Chuyên Sâu',
     description:
-      'Quy trình vô trùng y khoa lấy sạch nhân mụn, hút bã nhờn, điện di tinh chất phục hồi kháng viêm và làm mờ thâm nám cho nền da sáng khỏe.',
+      'Quy trình vô trùng y khoa làm sạch sâu bã nhờn, gom cồi mụn ẩn, điện di tinh chất phục hồi màng bảo vệ da sáng mịn khỏe mạnh.',
     duration: '75 PHÚT',
-    price: '390.000đ',
-    originalPrice: '480.000đ',
+    price: '550.000đ',
     image: skin01,
-    imageAlt: 'Chăm sóc da mụn nám sẹo rỗ chuẩn y khoa tại Xile Spa',
-    objectPosition: '50% 38%', // True center: aesthetician, treatment lamp, and client facial care in full harmony
+    imageAlt: 'Chăm sóc da chuyên sâu chuẩn y khoa 550k tại Xile Spa',
+    objectPosition: '50% 38%',
   },
   {
     id: 'skincare-peel',
     category: 'skincare',
     categoryLabel: 'Peel Da Sinh Học',
     badgeVariant: 'terracotta',
-    title: 'Peel Da Sinh Học Tái Sinh Đa Tầng',
+    title: 'Peel Da Sinh Học Tái Tạo',
     description:
-      'Khai mở làn da mới bằng acid hữu cơ sinh học an toàn, loại bỏ tế bào sừng già, gom cồi mụn và làm mờ thâm sạm mà không gây bong tróc thô bạo.',
-    duration: '75 PHÚT',
-    price: '590.000đ',
-    originalPrice: '750.000đ',
-    image: skin03,
-    imageAlt: 'Peel da sinh học tái sinh đa tầng tại Xile Spa',
-    objectPosition: '50% 48%', // True center: full facial peel treatment in clear focus
+      'Acid hữu cơ tự nhiên tái tạo biểu bì, gom cồi mụn, mờ thâm sạm và se khít chân lông (Peel mụn từ 500k, Peel Glass Skin từ 700k, Peel phục hồi 1.700k).',
+    duration: '60 PHÚT',
+    price: 'Từ 500.000đ',
+    image: skin07,
+    imageAlt: 'Peel da sinh học tái tạo từ 500k tại Xile Spa',
+    objectPosition: '50% 48%',
   },
+
+  // ==================== NHÓM 3: SPORTS THERAPY & GIÃN CƠ SÂU ====================
   {
-    id: 'sports-therapy',
+    id: 'sports-neck-shoulder',
     category: 'rehab',
-    categoryLabel: 'Sports Therapy',
+    categoryLabel: 'RBK Sport Therapy',
     badgeVariant: 'bronze',
-    title: 'Sports Therapy & Giải Cơ Sâu Vận Động',
+    title: 'Sport Therapy Cổ Vai Gáy',
     description:
-      'Kỹ thuật Myofascial Release giải phóng các điểm co cứng cơ (trigger points), phục hồi vận động sau Gym, Pickleball, Tennis và dân văn phòng.',
-    duration: '75 PHÚT',
-    price: '490.000đ',
-    originalPrice: '600.000đ',
+      'RBK Rehab By Khanh Pham: Kết hợp Cupping giác hơi, Myofascial Release giải mạc cơ, Trigger Point giải tỏa co cứng cơ tức thì cho dân văn phòng.',
+    duration: '60 PHÚT',
+    price: '350.000đ',
     image: rehab01,
-    imageAlt: 'Sports Therapy giải cơ sâu phục hồi cơ bắp tại Xile Spa',
-    objectPosition: '50% 52%', // True center: therapist and deep muscle release massage in full view
+    imageAlt: 'Sport Therapy trị liệu cổ vai gáy 60 phút 350k tại Xile Spa',
+    objectPosition: '50% 50%',
   },
   {
-    id: 'lash-lift',
-    category: 'skincare',
-    categoryLabel: 'Thẩm Mỹ Chuẩn Hàn',
-    badgeVariant: 'terracotta',
-    title: 'Uốn Mi Collagen Chuẩn Hàn Phủ Bóng',
+    id: 'sports-half-body',
+    category: 'rehab',
+    categoryLabel: 'RBK Sport Therapy',
+    badgeVariant: 'bronze',
+    title: 'Sport Therapy Half Body',
     description:
-      'Định hình trục cong tự nhiên hài hòa dáng mắt, phủ tinh chất Collagen Nano dưỡng từng sợi mi đen bóng, chắc khỏe và giữ nếp 6–8 tuần.',
-    duration: '45 PHÚT',
-    price: '180.000đ',
-    originalPrice: '250.000đ',
-    image: skin05,
-    imageAlt: 'Uốn mi collagen chuẩn Hàn phủ bóng tại Xile Spa',
-    objectPosition: '50% 38%', // True center: specialists in white Ao Dai and precision lash care under the lamp
+      'Phục hồi vận động cơ mạc sâu nửa thân, đào thải acid lactic sau Gym, Pickleball, Chạy bộ; tăng biên độ chuyển động và dẻo dai cơ khớp.',
+    duration: '80 PHÚT',
+    price: '450.000đ',
+    image: rehabSport,
+    imageAlt: 'Sport Therapy Half Body 80 phút 450k tại Xile Spa',
+    objectPosition: '50% 50%',
   },
 ];
 ---
@@ -134,14 +133,14 @@ const signatureServices = [
         data-filter="head-spa"
         class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 bg-[#FCF9F5] hover:bg-spa-beige/80 text-spa-charcoal border border-spa-bronze/20"
       >
-        Gội Dưỡng Sinh Trung Hoa
+        Gội Dưỡng Sinh Thảo Dược
       </button>
       <button 
         type="button" 
         data-filter="skincare"
         class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 bg-[#FCF9F5] hover:bg-spa-beige/80 text-spa-charcoal border border-spa-bronze/20"
       >
-        Chăm Da • Peel Da • Uốn Mi
+        Chăm Sóc & Peel Da
       </button>
       <button 
         type="button" 
@@ -153,7 +152,7 @@ const signatureServices = [
     </div>
 
     <!-- 6 Signature Therapy Cards: Refined 3-Column Grid with 1:1 Natural Aspect Ratio -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8 mb-16 sm:mb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8 mb-12 sm:mb-16">
       {signatureServices.map((service) => (
         <article 
           data-category={service.category}
@@ -223,14 +222,14 @@ const signatureServices = [
                 </span>
               </div>
 
-              <!-- Quick Booking Action Button -->
+              <!-- Quick Booking Action Button: Liên kết trực tiếp đến Facebook Fanpage của tiệm -->
               <div class="mt-4 pt-3 flex items-center justify-center gap-2">
                 <a
-                  href={CONTACT_CONFIG.ZALO_URL}
+                  href={CONTACT_CONFIG.FACEBOOK_FANPAGE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="w-full py-2 px-4 rounded-full text-xs font-medium text-spa-charcoal bg-spa-beige/60 hover:bg-spa-bronze hover:text-white transition-all duration-300 flex items-center justify-center gap-1.5 group-hover:bg-spa-bronze group-hover:text-white shadow-sm"
-                  aria-label={`Đặt lịch ${service.title} qua Zalo`}
+                  aria-label={`Đặt lịch tư vấn ${service.title} qua Facebook Xile Spa`}
                 >
                   <span>Đặt Lịch Tư Vấn</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -240,6 +239,22 @@ const signatureServices = [
           </div>
         </article>
       ))}
+    </div>
+
+    <!-- Explore More Services in Online Menu Notice -->
+    <div class="text-center mb-16 sm:mb-20">
+      <p class="text-xs sm:text-sm text-spa-wood/80 mb-3.5 max-w-xl mx-auto leading-relaxed">
+        Trên đây là các dịch vụ chủ lực nổi bật. Để xem trọn vẹn toàn bộ hơn 20+ liệu trình (Gội An Nhiên 69k, Phục Hồi 289k, Combo Chăm Da, Full Body Rehab & Thẻ Thành Viên):
+      </p>
+      <a
+        href={CONTACT_CONFIG.MENU_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full border border-spa-bronze/40 bg-[#FCF9F5] text-spa-charcoal hover:bg-spa-bronze hover:text-white hover:border-spa-bronze text-xs sm:text-sm font-medium transition-all shadow-sm group"
+      >
+        <span>Khám Phá Toàn Bộ Menu Online & Bảng Giá Chi Tiết</span>
+        <ArrowRight className="w-4 h-4 text-spa-bronze group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
+      </a>
     </div>
 
     <!-- Soft Wavy Promotion & Experience Banner (Lấy cảm hứng từ banner Couple Spa mẫu) -->
