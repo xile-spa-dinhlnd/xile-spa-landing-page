@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://xilespa.vn/sitemap-index.xml
+Sitemap: https://xile-spa-dinhlnd.github.io/xile-spa-landing-page/sitemap-index.xml
