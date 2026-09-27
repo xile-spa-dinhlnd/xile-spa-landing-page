@@ -29,3 +29,86 @@
     outline-offset: 2px;
   }
 }
+
+/* ==========================================================================
+   AMBIENT BREATHING GLOW (HIỆU ỨNG VẦNG SÁNG HÔ HẤP CHẬM CHO SPA)
+   Thuần CSS3 GPU-accelerated: Siêu mượt, không tốn JS, chu kỳ thở chậm 14-22s
+   ========================================================================== */
+
+@keyframes ambient-drift-slow {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.25;
+  }
+  35% {
+    transform: translate3d(35px, -25px, 0) scale(1.1);
+    opacity: 0.48;
+  }
+  70% {
+    transform: translate3d(-25px, 30px, 0) scale(0.95);
+    opacity: 0.32;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.25;
+  }
+}
+
+@keyframes ambient-drift-reverse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translate3d(-35px, 30px, 0) scale(1.14);
+    opacity: 0.55;
+  }
+  75% {
+    transform: translate3d(30px, -25px, 0) scale(0.92);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes ambient-pulse-breathe {
+  0% {
+    transform: scale(0.92) translate3d(0, 0, 0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.12) translate3d(0, -15px, 0);
+    opacity: 0.48;
+  }
+  100% {
+    transform: scale(0.92) translate3d(0, 0, 0);
+    opacity: 0.2;
+  }
+}
+
+.animate-ambient-drift {
+  animation: ambient-drift-slow 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-ambient-reverse {
+  animation: ambient-drift-reverse 22s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-ambient-breathe {
+  animation: ambient-pulse-breathe 14s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-drift,
+  .animate-ambient-reverse,
+  .animate-ambient-breathe {
+    animation: none !important;
+  }
+}
+

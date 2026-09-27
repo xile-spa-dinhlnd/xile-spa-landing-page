@@ -23,9 +23,13 @@ function getInitials(name: string): string {
 
 <section
   id="feedback"
-  class="bg-spa-alabaster py-16 sm:py-20 lg:py-24"
+  class="bg-spa-alabaster py-16 sm:py-20 lg:py-24 relative overflow-hidden"
   aria-label="Đánh giá từ khách hàng Xile Spa"
 >
+  <!-- Ambient breathing glow background effects -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-spa-bronze/8 rounded-full blur-3xl pointer-events-none animate-ambient-drift"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-spa-sage/8 rounded-full blur-3xl pointer-events-none animate-ambient-reverse"></div>
+
   <Container>
     <SectionHeading
       badgeText="Khách Hàng Nói Gì"
