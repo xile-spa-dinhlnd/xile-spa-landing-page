@@ -7,4 +7,6 @@ export interface TestimonialItem {
   avatarUrl?: string;
   date: string;
   verifiedBooking: boolean;
+  userMeta?: string;
+  source?: 'google' | 'direct';
 }

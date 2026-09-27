@@ -1,5 +1,6 @@
 ---
 import { CONTACT_CONFIG } from '@/data/contact';
+import { GOOGLE_REVIEWS_STATS } from '@/data/testimonials';
 import Container from '@/components/common/Container.astro';
 import Badge from '@/components/common/Badge.astro';
 import Button from '@/components/common/Button.astro';
@@ -66,20 +67,20 @@ import { Star, MapPin, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-r
 
         <!-- Social Proof & Trust Metrics Strip -->
         <div class="w-full pt-6 border-t border-spa-bronze/15 flex flex-wrap items-center gap-6 sm:gap-8 text-spa-charcoal">
-          <!-- Rating -->
-          <div class="flex items-center gap-2.5">
-            <div class="flex items-center gap-0.5 text-spa-gold">
-              <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
-              <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
-              <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
-              <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
-              <Star className="w-4 h-4 fill-spa-gold text-spa-gold" />
+          <!-- Rating (Clickable link to Google Reviews section) -->
+          <a href="#feedback" class="flex items-center gap-2.5 hover:opacity-85 transition-opacity group" aria-label={`Xem ${GOOGLE_REVIEWS_STATS.totalReviews} đánh giá 5 sao trên Google Maps`}>
+            <div class="flex items-center gap-0.5 text-amber-500">
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
             </div>
             <div class="text-xs sm:text-sm">
               <span class="font-bold text-spa-charcoal">5.0</span>
-              <span class="text-spa-wood ml-1">(1.200+ đánh giá)</span>
+              <span class="text-spa-wood ml-1 group-hover:text-spa-bronze transition-colors">({GOOGLE_REVIEWS_STATS.totalReviews} đánh giá Google)</span>
             </div>
-          </div>
+          </a>
 
           <!-- Quality commitment -->
           <div class="flex items-center gap-2 text-xs sm:text-sm text-spa-wood">
